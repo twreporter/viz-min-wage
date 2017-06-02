@@ -1,0 +1,26 @@
+# dev
+.vscode
+.idea
+
+# build output
+dist
+.next
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+yarn-error.log
+.yarnclean
+
+# config
+config.js
+
+# logs
+npm-debug.log
+yarn-error.log
+.yarnclean
+
+# config
+config.js
