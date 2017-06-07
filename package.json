@@ -7,15 +7,42 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "^3.0.0",
+    "autoprefixer": "^7.1.1",
+    "babel-plugin-inline-react-svg": "^0.4.0",
+    "babel-plugin-styled-components": "^1.1.4",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "css-loader": "^0.28.4",
+    "cssnano": "^3.10.0",
+    "detect-node": "^2.0.3",
+    "foundation-sites": "^6.3.1",
+    "lodash": "^4.17.4",
+    "next": "3.0.0-beta11",
     "next-redux-wrapper": "^1.0.0",
+    "node-sass": "^4.5.3",
+    "normalize.css": "^7.0.0",
+    "pixi.js": "^4.5.2",
+    "postcss-easy-import": "^2.1.0",
+    "postcss-loader": "^2.0.5",
+    "prop-types": "^15.5.10",
+    "raw-loader": "^0.5.1",
     "react": "^15.4.2",
-    "redux-devtools-extension": "^2.13.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.1.0",
+    "sass-loader": "^6.0.5",
+    "styled-components": "^2.0.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1"
+  }
 }
