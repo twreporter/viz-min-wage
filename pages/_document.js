@@ -17,7 +17,6 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
           <meta name="theme-color" content={colors.primaryColor} />
-          <meta name="msvalidate.01" content="032016D3EAB0BE87B16C7EB22BD51B78" />
           <link href="https://www.twreporter.org/asset/favicon.png" rel="shortcut icon" />
           {/* glabal stylesheets (/styles/index.scss) */}
           <style dangerouslySetInnerHTML={{ __html: foundationStyles }} />
