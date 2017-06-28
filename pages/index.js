@@ -1,12 +1,19 @@
 import { addCount, initStore, serverRenderClock, startClock } from '../store'
 
-import Canvas from '../components/Canvas'
 import Head from 'next/head'
 import Page from '../components/Page'
 import React from 'react'
 import { appConfig } from '../config'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
+
+import dynamic from 'next/dynamic'
+
+// exclude Canvas from server-side rendering
+const DynamicCanvas = dynamic(
+  import('../components/Canvas'),
+  { ssr: false }
+)
 
 class Counter extends React.Component {
   static getInitialProps({ store, isServer }) {
@@ -31,7 +38,7 @@ class Counter extends React.Component {
           <title>{appConfig.title}</title>
         </Head>
         <div>testtest</div>
-        <Canvas />
+        <DynamicCanvas />
       </Page>
     )
   }
