@@ -12,7 +12,10 @@ import dynamic from 'next/dynamic'
 // exclude Canvas from server-side rendering
 const DynamicCanvas = dynamic(
   import('../components/Canvas'),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => (<p>...Now Loading...</p>)
+  },
 )
 
 class Counter extends React.Component {
