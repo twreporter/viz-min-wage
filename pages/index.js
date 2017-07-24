@@ -7,6 +7,9 @@ import { appConfig } from '../config'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 
+import D3Graph from '../components/D3'
+
+
 class Counter extends React.Component {
   static getInitialProps({ store, isServer }) {
     store.dispatch(serverRenderClock(isServer))
@@ -30,6 +33,7 @@ class Counter extends React.Component {
           <title>{appConfig.title}</title>
         </Head>
         <div>testtest</div>
+        <D3Graph />
       </Page>
     )
   }
