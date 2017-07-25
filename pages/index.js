@@ -7,17 +7,6 @@ import { appConfig } from '../config'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 
-import dynamic from 'next/dynamic'
-
-// exclude Canvas from server-side rendering
-const DynamicCanvas = dynamic(
-  import('../components/Canvas'),
-  {
-    ssr: false,
-    loading: () => (<p>...Now Loading...</p>)
-  },
-)
-
 class Counter extends React.Component {
   static getInitialProps({ store, isServer }) {
     store.dispatch(serverRenderClock(isServer))
@@ -41,7 +30,6 @@ class Counter extends React.Component {
           <title>{appConfig.title}</title>
         </Head>
         <div>testtest</div>
-        <DynamicCanvas />
       </Page>
     )
   }

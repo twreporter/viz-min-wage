@@ -19,6 +19,3 @@ yarn-error.log
 npm-debug.log
 yarn-error.log
 .yarnclean
-
-# config
-config.js
