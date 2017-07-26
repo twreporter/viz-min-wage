@@ -1,4 +1,4 @@
-import AddCount from './AddCount'
+
 import Clock from './Clock'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
@@ -23,12 +23,6 @@ class Page extends React.Component {
     return (
       <Content>
         <div>{this.props.children}</div>
-        <h1>{title}</h1>
-        <Clock lastUpdate={lastUpdate} light={light} />
-        <AddCount />
-        <nav>
-          <Link href={linkTo}><a>Navigate</a></Link>
-        </nav>
       </Content>
     )
   }
