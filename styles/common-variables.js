@@ -30,36 +30,23 @@ const colors = {
 }
 
 const breakpoints = {
+  // in rem
   small: {
-    min: 640,
+    min: 40,
   },
   medium: {
-    min: 1024,
+    min: 63.93,
   },
   large: {
-    min: 1441,
+    min: 75,
   },
 }
 
-const bps = {
-  xsmall: {
-    max: `${breakpoints.small.min - 1}px`,
-  },
-  small: {
-    min: `${breakpoints.small.min}px`,
-    max: `${breakpoints.medium.min - 1}px`,
-  },
-  medium: {
-    min: `${breakpoints.medium.min}px`,
-    max: `${breakpoints.large.min - 1}px`,
-  },
-  large: {
-    min: `${breakpoints.large.min}px`,
-  },
-}
+const rem = value => `${value}rem`
 
 export {
-  bps,
+  breakpoints,
   colors,
   fonts,
+  rem,
 }
