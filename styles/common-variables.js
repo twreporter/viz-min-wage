@@ -1,3 +1,6 @@
+import { rem } from './utils'
+
+
 const fonts = {
   size: {
     xsmall: '9px',
@@ -42,11 +45,28 @@ const breakpoints = {
   },
 }
 
-const rem = value => `${value}rem`
+const remDiff = 0.0625
+
+const bps = {
+  xsmall: {
+    max: `${rem(breakpoints.small.min - remDiff)}`,
+  },
+  small: {
+    min: `${rem(breakpoints.small.min)}`,
+    max: `${rem(breakpoints.medium.min - remDiff)})`,
+  },
+  medium: {
+    min: `${rem(breakpoints.medium.min)})`,
+    max: `${rem(breakpoints.large.min - remDiff)}`,
+  },
+  large: {
+    min: `${rem(breakpoints.large.min)}`,
+  },
+}
 
 export {
   breakpoints,
+  bps,
   colors,
   fonts,
-  rem,
 }
