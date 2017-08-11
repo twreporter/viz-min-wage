@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { breakpoints } from '../styles/common-variables'
+import { rem, screen } from '../styles/utils'
 
 const Container = styled.div`
   position: fixed;
@@ -7,7 +9,7 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-  max-width: 75rem;
+  max-width: ${rem(breakpoints.large.min)};
   width: 100%;
   height: 100%;
   margin-left: auto;
@@ -17,11 +19,20 @@ const Wrapper = styled.div`
 
 const ChartContainer = styled.div`
   position: absolute;
-  right: 50%;
-  top: 0;
-  width: 50%;
-  height: 8rem;
   background-color: red;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 50%;
+
+  ${screen.largeThanMobile`
+    top: 50%;
+    right: 50%;
+    transform: translate(0, -50%);
+    width: 50%;
+    height: 8rem;
+    max-width: ${rem(breakpoints.large.min / 2)};
+  `}
 `
 
 const Chart = () => (
