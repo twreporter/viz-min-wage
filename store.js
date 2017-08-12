@@ -5,28 +5,75 @@ import thunkMiddleware from 'redux-thunk'
 const exampleInitialState = {
   lastUpdate: 0,
   light: false,
-  count: 0
+  count: 0,
+  svg: undefined,
+  chartSize: {
+    width: undefined,
+    height: undefined
+  },
+  chartFunc: {
+    xScale: undefined,
+    yScale: undefined,
+    line: undefined
+  }
 }
 
 export const actionTypes = {
   ADD: 'ADD',
-  TICK: 'TICK'
+  TICK: 'TICK',
+  SET_SVG: 'SET_SVG',
+  SET_CHART_SIZE: 'SET_CHART_SIZE',
+  SET_CHART_FUNC: 'SET_CHART_FUNC'
 }
 
 // REDUCERS
 export const reducer = (state = exampleInitialState, action) => {
   switch (action.type) {
     case actionTypes.TICK:
-      return Object.assign({}, state, { lastUpdate: action.ts, light: !!action.light })
+      return Object.assign({}, state, {
+        lastUpdate: action.ts,
+        light: !!action.light
+      })
+
     case actionTypes.ADD:
       return Object.assign({}, state, {
         count: state.count + 1
       })
+
+    case actionTypes.SET_SVG:
+      return Object.assign({}, state, {
+        svg: action.payload
+      })
+
+    case actionTypes.SET_CHART_SIZE:
+      let size = Object.assign({}, state.chartSize, action.payload)
+      return Object.assign({}, state, {
+        chartSize: size
+      })
+
+    case actionTypes.SET_CHART_FUNC:
+      let func = Object.assign({}, state.chartFunc, action.payload)
+      return Object.assign({}, state, {
+        chartFunc: func
+      })
+
     default: return state
   }
 }
 
 // ACTIONS
+export const setSvg = (svg) => dispatch => {
+  return dispatch({ type: actionTypes.SET_SVG, payload: svg})
+}
+
+export const setChartSize = (size) => dispatch => {
+  return dispatch({ type: actionTypes.SET_CHART_SIZE, payload: size })
+}
+
+export const setChartFunc = (func) => dispatch => {
+  return dispatch({ type: actionTypes.SET_CHART_FUNC, payload: func })
+}
+
 export const serverRenderClock = (isServer) => dispatch => {
   return dispatch({ type: actionTypes.TICK, light: !isServer, ts: Date.now() })
 }

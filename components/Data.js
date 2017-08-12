@@ -1,31 +1,34 @@
-export const basedata = [
+export const data = {
+
+basedata: [
   {x: 0, y: 11}, {x: 1, y: 35},
   {x: 2, y: 23}, {x: 3, y: 78},
   {x: 4, y: 55}, {x: 5, y: 18},
   {x: 6, y: 98}, {x: 7, y: 100},
   {x: 8, y: 22}, {x: 9, y: 65}
-]
+],
 
-export const testdata = [
+testdata: [
   {x: 0, y: 25}, {x: 1, y: 43},
   {x: 2, y: 65}, {x: 3, y: 36},
   {x: 4, y: 77}, {x: 5, y: 52},
   {x: 6, y: 62}, {x: 7, y: 81},
   {x: 8, y: 57}, {x: 9, y: 84}
-]
+],
 
-export const testdata1 = [
+testdata1: [
   {x: 0, y: 36}, {x: 1, y: 46},
   {x: 2, y: 30}, {x: 3, y: 18},
   {x: 4, y: 47}, {x: 5, y: 47},
   {x: 6, y: 84}, {x: 7, y: 90},
   {x: 8, y: 45}, {x: 9, y: 72}
-]
+],
 
-export const testdata2 = [
+testdata2: [
   {x: 0, y: 12}, {x: 1, y: 17},
   {x: 2, y: 45}, {x: 3, y: 35},
   {x: 4, y: 74}, {x: 5, y: 47},
   {x: 6, y: 24}, {x: 7, y: 90},
   {x: 8, y: 56}, {x: 9, y: 72}
 ]
+}
