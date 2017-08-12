@@ -9,6 +9,7 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
+  position: relative;
   max-width: ${rem(breakpoints.large.min)};
   width: 100%;
   height: 100%;
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
 
 const ChartContainer = styled.div`
   position: absolute;
-  background-color: red;
+  background-color: #39CCCC;
   top: 0%;
   left: 0%;
   width: 100%;

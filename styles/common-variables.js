@@ -38,7 +38,7 @@ const breakpoints = {
     min: 40,
   },
   medium: {
-    min: 63.93,
+    min: 64,
   },
   large: {
     min: 75,

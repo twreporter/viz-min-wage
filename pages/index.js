@@ -1,26 +1,48 @@
-import { addCount, initStore, serverRenderClock, startClock } from '../store'
+import { initStore } from '../store'
 
-import Head from 'next/head'
-import Page from '../components/Page'
-import React from 'react'
-import { appConfig } from '../config'
-import { bindActionCreators } from 'redux'
-import withRedux from 'next-redux-wrapper'
-import OverlayText from '../components/OverlayText'
-import Slide from '../components/Slide'
-import Row from '../components/Row'
 import Chart from '../components/Chart'
+import Head from 'next/head'
+import OverlayText from '../components/OverlayText'
+import Page from '../components/Page'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Row from '../components/Row'
+import Slide from '../components/Slide'
+import { appConfig } from '../config'
+import { debounce } from 'lodash'
+import { detectWindowSize } from '../actions/section'
+import withRedux from 'next-redux-wrapper'
 
-class Counter extends React.Component {
+const _ = {
+  debounce,
+}
+
+const debounceTime = {
+  window: {
+    threshold: 60,
+    maxWait: 180,
+  },
+  scroll: {
+    threshold: 30,
+    maxWait: 60,
+  },
+}
+
+class Home extends React.Component {
   static getInitialProps({ store, isServer }) {
-    store.dispatch(serverRenderClock(isServer))
-    store.dispatch(addCount())
-
     return { isServer }
   }
 
+  constructor(props) {
+    super(props)
+
+    this.debouncedBrowserResize = _.debounce(() => {
+      this.props.detectWindowSize()
+    }, debounceTime.window.threshold, { maxWait: debounceTime.window.maxWait })
+  }
+
   componentDidMount() {
-    this.timer = this.props.startClock()
+    window.addEventListener('resize', this.debouncedBrowserResize)
   }
 
   componentWillUnmount() {
@@ -29,7 +51,7 @@ class Counter extends React.Component {
 
   render() {
     return (
-      <Page title="Index Page" linkTo="/other">
+      <Page title="Home Page" linkTo="/other">
         <Head>
           <title>{appConfig.title}</title>
         </Head>
@@ -60,10 +82,12 @@ class Counter extends React.Component {
   }
 }
 
+Home.defaultProps = {
+  detectWindowSize: null,
+}
 
-const mapDispatchToProps = dispatch => ({
-  addCount: bindActionCreators(addCount, dispatch),
-  startClock: bindActionCreators(startClock, dispatch),
-})
+Home.propTypes = {
+  detectWindowSize: PropTypes.func,
+}
 
-export default withRedux(initStore, null, mapDispatchToProps)(Counter)
+export default withRedux(initStore, null, { detectWindowSize })(Home)

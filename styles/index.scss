@@ -24,6 +24,18 @@ body {
   letter-spacing: 0.3px;
 }
 
+@media (max-width: 39.375rem) {
+  html {
+    overflow: hidden;
+    height: 100%;
+  }
+  body {
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 button {
   font-family: $sans-serif !important;
 }
