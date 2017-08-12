@@ -51,14 +51,6 @@ const mapStateToProps = ({ svg, chartSize, chartFunc }) => ({
   height: chartSize.height,
   xScale: chartFunc.xScale
  })
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setChartFunc: bindActionCreators(setChartFunc, dispatch)
-//   }
-// }
-
-// const mapStateToProps = ({ svg, chartSize }) => ({ svg, chartSize })
 
 const mapDispatchToProps = (dispatch) => {
   return {
