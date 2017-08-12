@@ -8,6 +8,8 @@ const _ = {
 
 const initState = {
   isMobile: false,
+  windowWidth: 600,
+  windowHeight: 600,
 }
 
 export default function (state = initState, action) {
@@ -15,11 +17,15 @@ export default function (state = initState, action) {
     case types.SET_MOBILE: {
       return _.assign({}, state, {
         isMobile: true,
+        windowWidth: action.width,
+        windowHeight: action.height,
       })
     }
     case types.SET_NON_MOBILE: {
       return _.assign({}, state, {
         isMobile: false,
+        windowWidth: action.width,
+        windowHeight: action.height,
       })
     }
     default:

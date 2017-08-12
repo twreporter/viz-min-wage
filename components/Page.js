@@ -1,5 +1,3 @@
-
-import Clock from './Clock'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React from 'react'
