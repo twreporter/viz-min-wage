@@ -7,9 +7,6 @@
 @import './animations.scss';
 
 @include foundation-global-styles;
-@include foundation-grid;
-@include foundation-visibility-classes;
-@include foundation-float-classes;
 
 $sans-serif: source-han-sans-traditional,Noto Sans TC,PingFang TC,Apple LiGothic Medium,Roboto,Microsoft JhengHei,Lucida Grande,Lucida Sans Unicode,sans-serif;
 
@@ -24,6 +21,7 @@ body {
   background: #d3d3d3;
   font-family: $sans-serif;
   line-height: 1.8;
+  letter-spacing: 0.3px;
 }
 
 button {
