@@ -7,6 +7,7 @@ const exampleInitialState = {
   light: false,
   count: 0,
   svg: undefined,
+  animating: undefined,
   chartSize: {
     width: undefined,
     height: undefined
@@ -23,7 +24,8 @@ export const actionTypes = {
   TICK: 'TICK',
   SET_SVG: 'SET_SVG',
   SET_CHART_SIZE: 'SET_CHART_SIZE',
-  SET_CHART_FUNC: 'SET_CHART_FUNC'
+  SET_CHART_FUNC: 'SET_CHART_FUNC',
+  ANIMATING: 'ANIMATING'
 }
 
 // REDUCERS
@@ -57,6 +59,11 @@ export const reducer = (state = exampleInitialState, action) => {
         chartFunc: func
       })
 
+    case actionTypes.ANIMATING:
+      return Object.assign({}, state, {
+        animating: action.payload
+      })
+
     default: return state
   }
 }
@@ -72,6 +79,10 @@ export const setChartSize = (size) => dispatch => {
 
 export const setChartFunc = (func) => dispatch => {
   return dispatch({ type: actionTypes.SET_CHART_FUNC, payload: func })
+}
+
+export const setAnimating = (name) => dispatch => {
+  return dispatch({ type: actionTypes.ANIMATING, payload: name })
 }
 
 export const serverRenderClock = (isServer) => dispatch => {

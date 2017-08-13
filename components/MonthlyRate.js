@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Line from './Line'
+import Marker from './Marker'
 import { setChartFunc } from '../store'
 
 const xRange = [0, 10]
@@ -40,7 +41,9 @@ class MonthlyRate extends Component {
   render () {
     return (
       <div>
-        <Line name={'testdata1'} color={'red'} animate={false} />
+        <Line name={'testdata1'} color={'blue'} animate={false} />
+        <Line name={'testdata2'} color={'red'} animate={true} />
+        <Marker pos={{start: 3, end: 7}} after={'testdata2'} />
       </div>
     )
   }

@@ -2,9 +2,10 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { data } from './Data'
-
+import { setAnimating } from '../store'
 /*
  * we use original css syntax in this module
  */
@@ -50,7 +51,9 @@ class Line extends Component {
   }
 
   animate () {
-    let animateLine = d3.select("#"+this.props.name)
+    let name = this.props.name
+    let animateLine = d3.select("#"+name)
+    let that = this
     let length = animateLine.node().getTotalLength()
     animateLine.attr("stroke-dasharray", length+" "+length)
                .attr("stroke-dashoffset", length)
@@ -59,6 +62,9 @@ class Line extends Component {
                .duration(2000)
                .ease(d3.easeLinear)
                .attr("stroke-dashoffset", 0)
+               .on('end', function () {
+                 that.props.setAnimating(name)
+               })
   }
 
   render () {
@@ -70,6 +76,10 @@ class Line extends Component {
 
 const mapStateToProps = ({svg, chartFunc}) => ({svg, line: chartFunc.line})
 
-const mapDispatchToProps = () => ({})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setAnimating: bindActionCreators(setAnimating, dispatch)
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Line)
