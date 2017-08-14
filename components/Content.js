@@ -5,11 +5,14 @@ import OverlayText from './OverlayText'
 import Row from './Row'
 import Slide from './Slide'
 
+import D3Graph from './D3'
+
 class Content extends React.Component {
   render() {
     return (
       <div>
         <Chart />
+        <D3Graph />
         <Slide>
           <Row>
             <OverlayText>

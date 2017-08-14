@@ -3,11 +3,15 @@ import styled from 'styled-components'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import get from 'lodash/get'
 
 import Line from './Line'
 import Marker from './Marker'
-import { setChartFunc } from '../store'
+import { setChartFunc } from '../actions/chart'
 
+const _ = {
+  get,
+}
 const xRange = [0, 10]
 const yRange = [0, 200]
 
@@ -49,10 +53,10 @@ class MonthlyRate extends Component {
   }
 }
 
-const mapStateToProps = ({ svg, chartSize, chartFunc }) => ({
-  svg,
-  height: chartSize.height,
-  xScale: chartFunc.xScale
+const mapStateToProps = (state) => ({
+  svg: _.get(state, 'chart.svg', undefined),
+  height: _.get(state, 'chart.chartSize.height', undefined),
+  xScale: _.get(state, 'chart.chartFunc.xScale', undefined)
  })
 
 const mapDispatchToProps = (dispatch) => {

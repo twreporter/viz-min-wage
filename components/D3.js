@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 
 import HourlyRate from './HourlyRate'
 import MonthlyRate from './MonthlyRate'
-import { setSvg, setChartSize } from '../store'
+import { setSvg, setChartSize } from '../actions/chart'
 
 const D3Container = styled.div`
   width: 100%
@@ -51,15 +51,16 @@ class D3Graph extends Component {
   }
 
   getChart () {
-    if( d3.select("#d3Chart").empty() ){
+    let selection = d3.select("#d3Chart")
+    if( selection.empty() ){
       setTimeout(this.getChart, 1000)
     }else{
-      this.props.setSvg(d3.select("#d3Chart"))
+      this.props.setSvg(selection)
     }
   }
 
   handleClick (e) {
-    this.setState({hourly: false})
+    this.setState({ hourly: false })
   }
 
   render () {
@@ -69,7 +70,8 @@ class D3Graph extends Component {
         {this.props.chart}
         {this.state.hourly ?
          <HourlyRate /> :
-         <MonthlyRate />}
+         <MonthlyRate />
+        }
       </D3Container>
     )
   }

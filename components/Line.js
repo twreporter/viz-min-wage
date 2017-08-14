@@ -3,9 +3,15 @@ import styled from 'styled-components'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import get from 'lodash/get'
 
 import { data } from './Data'
-import { setAnimating } from '../store'
+import { setAnimating } from '../actions/chart'
+
+const _ = {
+  get,
+}
+
 /*
  * we use original css syntax in this module
  */
@@ -26,6 +32,18 @@ class Line extends Component {
 
       let svg = this.props.svg || nextProps.svg
       let line = this.props.line || nextProps.line
+
+      if( (svg!=undefined) && (line!=undefined) ){
+        this.draw(svg, line)
+      }
+    }
+  }
+
+  componentDidMount () {
+    if( this.state.drawn == false){
+
+      let svg = this.props.svg
+      let line = this.props.line
 
       if( (svg!=undefined) && (line!=undefined) ){
         this.draw(svg, line)
@@ -74,7 +92,10 @@ class Line extends Component {
   }
 }
 
-const mapStateToProps = ({svg, chartFunc}) => ({svg, line: chartFunc.line})
+const mapStateToProps = (state) => ({
+  svg: _.get(state, 'chart.svg', undefined),
+  line: _.get(state, 'chart.chartFunc.line', undefined)
+})
 
 const mapDispatchToProps = (dispatch) => {
   return {

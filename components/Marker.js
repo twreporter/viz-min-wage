@@ -3,9 +3,15 @@ import styled from 'styled-components'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import get from 'lodash/get'
 
 import { data } from './Data'
-import { setAnimating } from '../store'
+import { setAnimating } from '../actions/chart'
+
+const _ = {
+  get,
+}
+
 /*
  * we use original css syntax in this module
  */
@@ -49,11 +55,11 @@ class Marker extends Component {
   }
 }
 
-const mapStateToProps = ({ svg, animating, chartSize, chartFunc }) => ({
-  svg,
-  animating,
-  xScale: chartFunc.xScale,
-  height: chartSize.height
+const mapStateToProps = (state) => ({
+  svg: _.get(state, 'chart.svg', undefined),
+  animating: _.get(state, 'chart.animating', undefined),
+  xScale: _.get(state, 'chart.chartFunc.xScale', undefined),
+  height: _.get(state, 'chart.chartSize.height', undefined)
  })
 
 const mapDispatchToProps = (dispatch) => {
