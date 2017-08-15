@@ -49,7 +49,9 @@ const OuterCropper = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  height: 100%;
+  ${screen.mobile`
+    height: 100%;
+  `}
 `
 
 class Home extends React.Component {
@@ -151,6 +153,7 @@ class Home extends React.Component {
 
   render() {
     const { topY, deltaY } = this.state
+    const { isMobile } = this.props
 
     return (
       <Page title="Home Page" linkTo="/other">
@@ -159,15 +162,17 @@ class Home extends React.Component {
         </Head>
         <OuterCropper>
           <Chart />
-          <Swipeable
-            onSwiping={this._swiping}
-            onSwiped={this._swiped}
-            style={{ position: 'fixed', width: '100%', height: '100%' }}
-          >
-            <Wrapper innerRef={ref => this.contentWrapper = ref} style={{ top: topY - deltaY }}>
-              <Content />
-            </Wrapper>
-          </Swipeable>
+          {
+            isMobile ? (<Swipeable
+              onSwiping={this._swiping}
+              onSwiped={this._swiped}
+              style={{ position: 'fixed', width: '100%', height: '100%' }}
+            >
+              <Wrapper innerRef={ref => this.contentWrapper = ref} style={{ top: topY - deltaY }}>
+                <Content />
+              </Wrapper>
+            </Swipeable>) : <Content />
+          }
         </OuterCropper>
       </Page>
     )
@@ -175,6 +180,7 @@ class Home extends React.Component {
 }
 
 Home.defaultProps = {
+  isMobile: false,
   detectWindowSize: null,
   setSectionIndex: null,
   windowHeight: 600,
@@ -182,6 +188,7 @@ Home.defaultProps = {
 }
 
 Home.propTypes = {
+  isMobile: PropTypes.bool,
   detectWindowSize: PropTypes.func,
   setSectionIndex: PropTypes.func,
   windowHeight: PropTypes.number,
@@ -190,6 +197,7 @@ Home.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    isMobile: _.get(state, 'section.isMobile', false),
     windowWidth: _.get(state, 'section.windowWidth', 600),
     windowHeight: _.get(state, 'section.windowHeight', 600),
     sectionIndex: _.get(state, 'section.sectionIndex', 0),
