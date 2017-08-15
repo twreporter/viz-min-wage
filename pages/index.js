@@ -35,7 +35,8 @@ const debounceTime = {
 
 const swipeConfig = {
   threshold: 0.1,   // 10% of the window height
-  duration: 800,    // animation duration (ms)
+  duration: 650,    // animation duration (ms)
+  sDuration: 200,    // shorter animation duration - for the reverse directions (ms)
 }
 
 const OuterCropper = styled.div`
@@ -126,7 +127,7 @@ class Home extends React.Component {
 
     const newTop = -1 * nextIndex * windowHeight
     this.props.setSectionIndex(nextIndex)
-    this._moveContentByY(newTop)
+    this._moveContentByY(newTop, swipeConfig.duration)
   }
 
   // not a viable swipe: move back to the previous position
@@ -134,13 +135,13 @@ class Home extends React.Component {
     this.setState({ isMoving: true })
     const { sectionIndex, windowHeight } = this.props
     const newTop = -1 * sectionIndex * windowHeight
-    this._moveContentByY(newTop)
+    this._moveContentByY(newTop, swipeConfig.sDuration)
   }
 
-  _moveContentByY(newTop) {
+  _moveContentByY(newTop, duration) {
     anime({ targets: this.contentWrapper,
       top: newTop,
-      duration: swipeConfig.duration,
+      duration,
       easing: 'easeInOutSine',
       delay: 30,
     }).finished.then(() => {
