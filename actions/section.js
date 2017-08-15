@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/action-types'
 import { breakpoints } from '../styles/common-variables'
 
-export const detectWindowSize = () => dispatch => {
+export const detectWindowSize = () => (dispatch) => {
   const w = window
   const d = document
   const documentElement = d.documentElement
@@ -17,3 +17,5 @@ export const detectWindowSize = () => dispatch => {
 
   return dispatch({ type: actionTypes.SET_NON_MOBILE, width, height })
 }
+
+export const setSectionIndex = index => dispatch => dispatch({ type: actionTypes.SET_SECTION_INDEX, index })

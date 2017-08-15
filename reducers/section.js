@@ -1,4 +1,5 @@
 import * as types from '../constants/action-types'
+import { appConfig, slideConfig } from '../config'
 
 import { assign } from 'lodash'
 
@@ -7,6 +8,7 @@ const _ = {
 }
 
 const initState = {
+  sectionIndex: 0,
   isMobile: false,
   windowWidth: 600,
   windowHeight: 600,
@@ -27,6 +29,15 @@ export default function (state = initState, action) {
         windowWidth: action.width,
         windowHeight: action.height,
       })
+    }
+    case types.SET_SECTION_INDEX: {
+      const { index } = action
+      if (index >= 0 && index < slideConfig.totalCnt) {
+        return _.assign({}, state, {
+          sectionIndex: index,
+        })
+      }
+      return state
     }
     default:
       return state
