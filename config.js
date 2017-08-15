@@ -6,4 +6,7 @@ module.exports = {
     title: '專案名稱 - 報導者 The Reporter',
     description: '專案簡介專案簡介專案簡介',
   },
+  slideConfig: {
+    totalCnt: 3,
+  },
 }
