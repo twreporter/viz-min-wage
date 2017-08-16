@@ -9,4 +9,22 @@ module.exports = {
   slideConfig: {
     totalCnt: 3,
   },
+  scrollConfig: {
+    offset: 0.42,      // 42% of the window height, let the content of next slide appear earlier
+  },
+  swipeConfig: {
+    threshold: 0.1,    // 10% of the window height
+    duration: 600,     // animation duration (ms)
+    sDuration: 200,    // shorter animation duration - for the reverse directions (ms)
+  },
+  debounceTime: {
+    window: {
+      threshold: 60,
+      maxWait: 180,
+    },
+    scroll: {
+      threshold: 30,
+      maxWait: 60,
+    },
+  },
 }
