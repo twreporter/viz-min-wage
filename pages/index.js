@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Swipeable from 'react-swipeable'
 import anime from 'animejs'
-import { appConfig, slideConfig } from '../config'
+import { appConfig, slideConfig, scrollConfig, debounceTime, swipeConfig } from '../config'
 import { detectWindowSize, setSectionIndex } from '../actions/section'
 import { initStore } from '../store'
 import { screen } from '../styles/utils'
@@ -20,23 +20,6 @@ import withRedux from 'next-redux-wrapper'
 const _ = {
   debounce,
   get,
-}
-
-const debounceTime = {
-  window: {
-    threshold: 60,
-    maxWait: 180,
-  },
-  scroll: {
-    threshold: 30,
-    maxWait: 60,
-  },
-}
-
-const swipeConfig = {
-  threshold: 0.1,   // 10% of the window height
-  duration: 650,    // animation duration (ms)
-  sDuration: 200,    // shorter animation duration - for the reverse directions (ms)
 }
 
 const OuterCropper = styled.div`
@@ -49,11 +32,13 @@ const OuterCropper = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  height: 100%;
+  ${screen.mobile`
+    height: 100%;
+  `}
 `
 
 class Home extends React.Component {
-  static getInitialProps({ store, isServer }) {
+  static getInitialProps({ isServer }) {
     return { isServer }
   }
 
@@ -65,19 +50,22 @@ class Home extends React.Component {
       isMoving: false,  // if the content is moving automatically after users triggered a swipe
     }
 
-    this.debouncedBrowserResize = _.debounce(() => {
-      this.props.detectWindowSize()
-    }, debounceTime.window.threshold, { maxWait: debounceTime.window.maxWait })
     this._swiping = this._swiping.bind(this)
     this._swiped = this._swiped.bind(this)
     this._onSwipeNext = this._onSwipeNext.bind(this)
     this._onSwipeBack = this._onSwipeBack.bind(this)
     this._getSwipeThreshold = this._getSwipeThreshold.bind(this)
     this._moveContentByY = this._moveContentByY.bind(this)
+    this._onScroll = this._onScroll.bind(this)
+    this.debouncedBrowserResize = _.debounce(() => {
+      this.props.detectWindowSize()
+    }, debounceTime.window.threshold, { maxWait: debounceTime.window.maxWait })
+    this.debouncedOnScroll = _.debounce(this._onScroll, debounceTime.scroll.threshold, { maxWait: debounceTime.scroll.maxWait })
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.debouncedBrowserResize)
+    window.addEventListener('scroll', this.debouncedOnScroll)
     this.props.detectWindowSize()
   }
 
@@ -90,7 +78,7 @@ class Home extends React.Component {
   }
 
   // on swiping
-  _swiping(e, deltaX, deltaY, absX, absY, velocity) {
+  _swiping(e, deltaX, deltaY) {
     // console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
     e.preventDefault()      // disable Chrome's pull to refresh feature
     if (!this.state.isMoving) {
@@ -102,7 +90,7 @@ class Home extends React.Component {
   }
 
   // on swipe stopped
-  _swiped(e, deltaX, deltaY, isFlick, velocity) {
+  _swiped(e, deltaX, deltaY) {
     // console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
     e.preventDefault()       // disable Chrome's pull to refresh feature
     if (!this.state.isMoving) {
@@ -112,6 +100,16 @@ class Home extends React.Component {
         // bounce back to the previous position
         this._onSwipeBack()
       }
+    }
+  }
+
+  _onScroll() {
+    const { sectionIndex, windowHeight } = this.props
+    const doc = document.documentElement
+    const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+    const cIndex = Math.floor((top / windowHeight) + scrollConfig.offset)
+    if (cIndex !== sectionIndex) {
+      this.props.setSectionIndex(cIndex)
     }
   }
 
@@ -143,7 +141,6 @@ class Home extends React.Component {
       top: newTop,
       duration,
       easing: 'easeInOutSine',
-      delay: 30,
     }).finished.then(() => {
       this.setState({ isMoving: false, topY: newTop, deltaY: 0 })
     })
@@ -151,6 +148,7 @@ class Home extends React.Component {
 
   render() {
     const { topY, deltaY } = this.state
+    const { isMobile } = this.props
 
     return (
       <Page title="Home Page" linkTo="/other">
@@ -159,15 +157,17 @@ class Home extends React.Component {
         </Head>
         <OuterCropper>
           <Chart />
-          <Swipeable
-            onSwiping={this._swiping}
-            onSwiped={this._swiped}
-            style={{ position: 'fixed', width: '100%', height: '100%' }}
-          >
-            <Wrapper innerRef={ref => this.contentWrapper = ref} style={{ top: topY - deltaY }}>
-              <Content />
-            </Wrapper>
-          </Swipeable>
+          {
+            isMobile ? (<Swipeable
+              onSwiping={this._swiping}
+              onSwiped={this._swiped}
+              style={{ position: 'fixed', width: '100%', height: '100%' }}
+            >
+              <Wrapper innerRef={ref => this.contentWrapper = ref} style={{ top: topY - deltaY }}>
+                <Content />
+              </Wrapper>
+            </Swipeable>) : <Content />
+          }
         </OuterCropper>
       </Page>
     )
@@ -175,6 +175,7 @@ class Home extends React.Component {
 }
 
 Home.defaultProps = {
+  isMobile: false,
   detectWindowSize: null,
   setSectionIndex: null,
   windowHeight: 600,
@@ -182,6 +183,7 @@ Home.defaultProps = {
 }
 
 Home.propTypes = {
+  isMobile: PropTypes.bool,
   detectWindowSize: PropTypes.func,
   setSectionIndex: PropTypes.func,
   windowHeight: PropTypes.number,
@@ -190,6 +192,7 @@ Home.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    isMobile: _.get(state, 'section.isMobile', false),
     windowWidth: _.get(state, 'section.windowWidth', 600),
     windowHeight: _.get(state, 'section.windowHeight', 600),
     sectionIndex: _.get(state, 'section.sectionIndex', 0),
