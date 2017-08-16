@@ -66,7 +66,7 @@ module.exports = {
   exportPathMap: function () {
     return {
       "/": { page: "/" },
-      "/other": { page: "/other" },
+      // "/other": { page: "/other" },
     }
   },
 }
