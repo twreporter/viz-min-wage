@@ -52,6 +52,7 @@ class Line extends Component {
        .attr("id", this.props.name)
        .attr("d", line(data[this.props.name]))
        .attr("stroke", getColor(this.props.name))
+       .attr("stroke-linecap", "round")
        .attr("fill", "none")
        .attr("stroke-width", "3")
        .attr("visibility", this.props.animate?"hidden":"visible")

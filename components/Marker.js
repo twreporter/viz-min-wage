@@ -21,7 +21,6 @@ class Marker extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps')
     if( this.state.drawn == false){
       let xScale = this.props.xScale || nextProps.xScale
       if( xScale != undefined ){
@@ -31,7 +30,6 @@ class Marker extends Component {
   }
 
   componentDidMount () {
-    console.log('componentDidMount')
     if( this.state.drawn == false){
       let xScale = this.props.xScale
       if( xScale != undefined ){
@@ -40,10 +38,14 @@ class Marker extends Component {
     }
   }
 
+  componentWillUnmount () {
+    d3.select("#marker").remove()
+  }
+
   draw (xScale) {
     let { svg, height, pos } = this.props
-    console.log('draw marker')
     svg.append("rect")
+       .attr("id", "marker")
        .attr("x", xScale(pos.start))
        .attr("y", 0)
        .attr("rx", 10)
