@@ -17,7 +17,8 @@ class MonthlyRate extends Component {
     super(props)
 
     this.state = {
-      line: undefined
+      line: undefined,
+      xScale: undefined
     }
   }
 
@@ -42,7 +43,7 @@ class MonthlyRate extends Component {
        .attr("id", "monthlyAxisY")
        .call(d3.axisLeft(yScale))
 
-    this.setState({ line })
+    this.setState({ line, xScale })
   }
 
   componentWillUnmount () {
@@ -57,6 +58,7 @@ class MonthlyRate extends Component {
       <div>
         <Line svg={this.props.svg} line={this.state.line} name={'testdata1'} animate={false} />
         <Line svg={this.props.svg} line={this.state.line} name={'testdata2'} animate={true} />
+        <Marker svg={this.props.svg} xScale={this.state.xScale} height={this.props.height} pos={{start: 3, end: 7}} />
       </div>
     )
   }

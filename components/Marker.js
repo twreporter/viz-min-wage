@@ -2,14 +2,18 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import * as d3 from 'd3'
 
-import { data } from './Data'
-
 /*
  * we use original css syntax in this module
+ * props needed:
+ *  svg: for drawing rect
+ *  xScale, height: decide rect size
+ *  pos {start, end}: rect start x and end x
  */
 class Marker extends Component {
   constructor (props) {
     super(props)
+
+    this.draw = this.draw.bind(this)
 
     this.state = {
       drawn: false
@@ -17,27 +21,42 @@ class Marker extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    console.log('componentWillReceiveProps')
     if( this.state.drawn == false){
-      let { svg, xScale, height, pos, after } = this.props
-      let that = this
-      if( nextProps.animating == after ){
-        svg.append("rect")
-           .attr("x", xScale(pos.start))
-           .attr("y", 0)
-           .attr("height", height)
-           .attr("width", 0)
-           .attr("rx", "10")
-           .attr("ry", "10")
-           .attr("fill", "darkred")
-           .attr("opacity", "0.5")
-           .transition()
-           .duration(1000)
-           .attr("width", xScale(pos.end) - xScale(pos.start))
-           .on("end", function () {
-             that.props.setAnimating('marker')
-           })
+      let xScale = this.props.xScale || nextProps.xScale
+      if( xScale != undefined ){
+        this.draw(xScale)
       }
     }
+  }
+
+  componentDidMount () {
+    console.log('componentDidMount')
+    if( this.state.drawn == false){
+      let xScale = this.props.xScale
+      if( xScale != undefined ){
+        this.draw(xScale)
+      }
+    }
+  }
+
+  draw (xScale) {
+    let { svg, height, pos } = this.props
+    console.log('draw marker')
+    svg.append("rect")
+       .attr("x", xScale(pos.start))
+       .attr("y", 0)
+       .attr("rx", 10)
+       .attr("ry", 10)
+       .attr("height", height)
+       .attr("width", 0)
+       .attr("fill", "darkred")
+       .attr("opacity", "0.8")
+       .transition()
+       .duration(1000)
+       .attr("width", xScale(pos.end) - xScale(pos.start))
+
+    this.setState({drawn: true})
   }
 
   render () {
@@ -46,18 +65,5 @@ class Marker extends Component {
     )
   }
 }
-
-// const mapStateToProps = (state) => ({
-//   svg: _.get(state, 'chart.svg', undefined),
-//   animating: _.get(state, 'chart.animating', undefined),
-//   xScale: _.get(state, 'chart.chartFunc.xScale', undefined),
-//   height: _.get(state, 'chart.chartSize.height', undefined)
-//  })
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setAnimating: bindActionCreators(setAnimating, dispatch)
-//   }
-// }
 
 export default Marker
