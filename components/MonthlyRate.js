@@ -1,17 +1,10 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import * as d3 from 'd3'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import get from 'lodash/get'
 
 import Line from './Line'
 import Marker from './Marker'
-import { setChartFunc } from '../actions/chart'
 
-const _ = {
-  get,
-}
 const xRange = [0, 10]
 const yRange = [0, 200]
 
@@ -22,12 +15,20 @@ class MonthlyRate extends Component {
     d3.select("#hourlyAxis").remove()
     d3.select("#basedata").remove()
     d3.select("#testdata").remove()
-    this.props.setChartFunc({line: undefined})
+
+    this.state = {
+      xScale: undefined,
+      yScale: undefined,
+      animating: undefined
+    }
   }
 
   componentDidMount () {
-    let { svg, height, xScale } = this.props
+    let { svg, height, width } = this.props
 
+    let xScale = d3.scaleLinear()
+                   .domain(xRange)
+                   .range([0, width])
     let yScale = d3.scaleLinear()
                    .domain(yRange)
                    .range([height, 0])
@@ -38,31 +39,16 @@ class MonthlyRate extends Component {
     svg.append("g")
        .attr("id", "monthlyAxis")
        .call(d3.axisLeft(yScale))
-
-    this.props.setChartFunc({yScale, line})
   }
 
   render () {
     return (
       <div>
-        <Line name={'testdata1'} color={'blue'} animate={false} />
-        <Line name={'testdata2'} color={'red'} animate={true} />
-        <Marker pos={{start: 3, end: 7}} after={'testdata2'} />
+        <Line svg={this.props.svg} line={this.state.line} name={'testdata1'} color={'blue'} animate={false} />
+        <Line svg={this.props.svg} line={this.state.line} name={'testdata2'} color={'red'} animate={true} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  svg: _.get(state, 'chart.svg', undefined),
-  height: _.get(state, 'chart.chartSize.height', undefined),
-  xScale: _.get(state, 'chart.chartFunc.xScale', undefined)
- })
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setChartFunc: bindActionCreators(setChartFunc, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MonthlyRate)
+export default MonthlyRate

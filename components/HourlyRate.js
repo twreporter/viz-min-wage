@@ -1,16 +1,9 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import * as d3 from 'd3'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import get from 'lodash/get'
 
 import Line from './Line'
-import { setChartFunc } from '../actions/chart'
 
-const _ = {
-  get,
-}
 const xRange = [0, 10]
 const yRange = [0, 100]
 
@@ -21,7 +14,10 @@ class HourlyRate extends Component {
     this.draw = this.draw.bind(this)
 
     this.state = {
-      init: false
+      init: false,
+      xScale: undefined,
+      yScale: undefined,
+      line: undefined
     }
   }
 
@@ -34,11 +30,8 @@ class HourlyRate extends Component {
       let width = this.props.width || nextProps.width
       let height = this.props.height || nextProps.height
 
-      if( (svg != undefined) &&
-          (width != undefined) &&
-          (height != undefined) ){
-        this.draw(svg, width, height)
-      }
+      this.draw(svg, width, height)
+
     }
   }
 
@@ -46,11 +39,7 @@ class HourlyRate extends Component {
 
     if( this.state.init == false){
       let { svg, width, height } = this.props
-      if( (svg != undefined ) &&
-          (width != undefined) &&
-          (height != undefined) ){
-        this.draw(svg, width, height)
-      }
+      this.draw(svg, width, height)
     }
   }
 
@@ -74,30 +63,19 @@ class HourlyRate extends Component {
        .attr("id", "hourlyAxis")
        .call(d3.axisLeft(yScale))
 
-    this.props.setChartFunc({xScale, yScale, line})
-    this.setState({init: true})
+    this.setState({
+      init: true, xScale, yScale, line
+    })
   }
 
   render () {
     return (
       <div>
-        <Line name={'basedata'} color={'black'} animate={false} />
-        <Line name={'testdata'} color={'orange'} animate={true} />
+        <Line svg={this.props.svg} line={this.state.line} name={'basedata'} color={'black'} animate={false} />
+        <Line svg={this.props.svg} line={this.state.line} name={'testdata'} color={'orange'} animate={true} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  svg: _.get(state, 'chart.svg', undefined),
-  width: _.get(state, 'chart.chartSize.width', undefined),
-  height: _.get(state, 'chart.chartSize.height', undefined)
- })
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setChartFunc: bindActionCreators(setChartFunc, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HourlyRate)
+export default HourlyRate

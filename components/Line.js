@@ -1,16 +1,9 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import * as d3 from 'd3'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import get from 'lodash/get'
 
 import { data } from './Data'
-import { setAnimating } from '../actions/chart'
 
-const _ = {
-  get,
-}
 
 /*
  * we use original css syntax in this module
@@ -33,7 +26,7 @@ class Line extends Component {
       let svg = this.props.svg || nextProps.svg
       let line = this.props.line || nextProps.line
 
-      if( (svg!=undefined) && (line!=undefined) ){
+      if( line!=undefined ){
         this.draw(svg, line)
       }
     }
@@ -45,7 +38,7 @@ class Line extends Component {
       let svg = this.props.svg
       let line = this.props.line
 
-      if( (svg!=undefined) && (line!=undefined) ){
+      if( line!=undefined ){
         this.draw(svg, line)
       }
     }
@@ -81,7 +74,7 @@ class Line extends Component {
                .ease(d3.easeLinear)
                .attr("stroke-dashoffset", 0)
                .on('end', function () {
-                 that.props.setAnimating(name)
+                //  that.props.setAnimating(name)
                })
   }
 
@@ -92,15 +85,4 @@ class Line extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  svg: _.get(state, 'chart.svg', undefined),
-  line: _.get(state, 'chart.chartFunc.line', undefined)
-})
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setAnimating: bindActionCreators(setAnimating, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Line)
+export default Line
