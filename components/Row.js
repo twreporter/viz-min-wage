@@ -7,6 +7,5 @@ const Row = styled.div`
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  border: 2px gray solid;
 `
 export default Row
