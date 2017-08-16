@@ -4,6 +4,7 @@ import { debounce, get } from 'lodash'
 
 import Chart from '../components/Chart'
 import Content from '../components/Content'
+import ProgressBar from '../components/ProgressBar'
 import Head from 'next/head'
 import Page from '../components/Page'
 import PropTypes from 'prop-types'
@@ -48,6 +49,7 @@ class Home extends React.Component {
       topY: 0,
       deltaY: 0,
       isMoving: false,  // if the content is moving automatically after users triggered a swipe
+      percent: 0,       // track the reading progress
     }
 
     this._swiping = this._swiping.bind(this)
@@ -56,10 +58,9 @@ class Home extends React.Component {
     this._onSwipeBack = this._onSwipeBack.bind(this)
     this._getSwipeThreshold = this._getSwipeThreshold.bind(this)
     this._moveContentByY = this._moveContentByY.bind(this)
+    this._onWindowResize = this._onWindowResize.bind(this)
     this._onScroll = this._onScroll.bind(this)
-    this.debouncedBrowserResize = _.debounce(() => {
-      this.props.detectWindowSize()
-    }, debounceTime.window.threshold, { maxWait: debounceTime.window.maxWait })
+    this.debouncedBrowserResize = _.debounce(this._onWindowResize, debounceTime.window.threshold, { maxWait: debounceTime.window.maxWait })
     this.debouncedOnScroll = _.debounce(this._onScroll, debounceTime.scroll.threshold, { maxWait: debounceTime.scroll.maxWait })
   }
 
@@ -75,6 +76,10 @@ class Home extends React.Component {
 
   _getSwipeThreshold() {
     return swipeConfig.threshold * this.props.windowHeight
+  }
+
+  _onWindowResize() {
+    this.props.detectWindowSize()
   }
 
   // on swiping
@@ -108,6 +113,9 @@ class Home extends React.Component {
     const doc = document.documentElement
     const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
     const cIndex = Math.floor((top / windowHeight) + scrollConfig.offset)
+    const pageHeight = document.body.scrollHeight
+    const percent = Math.round((100 * top) / (pageHeight - windowHeight))
+    this.setState({ percent })
     if (cIndex !== sectionIndex) {
       this.props.setSectionIndex(cIndex)
     }
@@ -124,7 +132,9 @@ class Home extends React.Component {
     }
 
     const newTop = -1 * nextIndex * windowHeight
+    const percent = Math.round((100 * nextIndex) / (slideConfig.totalCnt - 1))
     this.props.setSectionIndex(nextIndex)
+    this.setState({ percent })
     this._moveContentByY(newTop, swipeConfig.duration)
   }
 
@@ -147,7 +157,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { topY, deltaY } = this.state
+    const { topY, deltaY, percent } = this.state
     const { isMobile } = this.props
 
     return (
@@ -169,6 +179,7 @@ class Home extends React.Component {
             </Swipeable>) : <Content />
           }
         </OuterCropper>
+        <ProgressBar percent={percent} />
       </Page>
     )
   }

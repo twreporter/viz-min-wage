@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  border: 2px blue solid;
 `
 
 const ChartContainer = styled.div`

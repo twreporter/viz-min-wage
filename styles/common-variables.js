@@ -30,6 +30,7 @@ const colors = {
   textGrey: '#4a4a4a',
   black: '#393939',
   white: '#ffffff', // 255
+  red: '#fc3434',
 }
 
 const breakpoints = {
