@@ -7,6 +7,10 @@ import Line from './Line'
 const xRange = [0, 10]
 const yRange = [0, 100]
 
+/*
+ * props needed: svg, width, height
+ */
+
 class HourlyRate extends Component {
   constructor (props) {
     super(props)
@@ -15,22 +19,21 @@ class HourlyRate extends Component {
 
     this.state = {
       init: false,
-      xScale: undefined,
-      yScale: undefined,
       line: undefined
     }
   }
 
   componentWillReceiveProps (nextProps) {
-    // we need to wait until svg has been setted up
 
     if( this.state.init == false){
-
       let svg = this.props.svg || nextProps.svg
       let width = this.props.width || nextProps.width
       let height = this.props.height || nextProps.height
 
       this.draw(svg, width, height)
+    }
+
+    if( this.props.sectionIndex != nextProps.sectionIndex ){
 
     }
   }
@@ -41,6 +44,13 @@ class HourlyRate extends Component {
       let { svg, width, height } = this.props
       this.draw(svg, width, height)
     }
+  }
+
+  componentWillUnmount () {
+    d3.select("#hourlyAxisY").remove()
+    d3.select("#hourlyAxisX").remove()
+    d3.select("#basedata").remove()
+    d3.select("#testdata").remove()
   }
 
   draw (svg, width, height) {
@@ -55,24 +65,24 @@ class HourlyRate extends Component {
                  .x(function(d){ return xScale(d.x) })
                  .y(function(d){ return yScale(d.y) })
 
-    // add axis
     svg.append("g")
+       .attr("id", "hourlyAxisX")
        .attr("transform","translate(0," + height + ")")
        .call(d3.axisBottom(xScale))
     svg.append("g")
-       .attr("id", "hourlyAxis")
+       .attr("id", "hourlyAxisY")
        .call(d3.axisLeft(yScale))
 
     this.setState({
-      init: true, xScale, yScale, line
+      init: true, line
     })
   }
 
   render () {
     return (
       <div>
-        <Line svg={this.props.svg} line={this.state.line} name={'basedata'} color={'black'} animate={false} />
-        <Line svg={this.props.svg} line={this.state.line} name={'testdata'} color={'orange'} animate={true} />
+        <Line svg={this.props.svg} line={this.state.line} name={'basedata'} animate={false} />
+        <Line svg={this.props.svg} line={this.state.line} name={'testdata'} animate={true} />
       </div>
     )
   }

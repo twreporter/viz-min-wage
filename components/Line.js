@@ -3,10 +3,13 @@ import styled from 'styled-components'
 import * as d3 from 'd3'
 
 import { data } from './Data'
-
-
+import { getColor } from './utils'
 /*
  * we use original css syntax in this module
+ * props needed:
+ *  svg, line: drawing lines
+ *  animate: need animation or not
+ *  name: name of data
  */
 class Line extends Component {
   constructor (props) {
@@ -48,7 +51,7 @@ class Line extends Component {
     svg.append("path")
        .attr("id", this.props.name)
        .attr("d", line(data[this.props.name]))
-       .attr("stroke", this.props.color)
+       .attr("stroke", getColor(this.props.name))
        .attr("fill", "none")
        .attr("stroke-width", "3")
        .attr("visibility", this.props.animate?"hidden":"visible")

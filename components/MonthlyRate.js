@@ -8,18 +8,16 @@ import Marker from './Marker'
 const xRange = [0, 10]
 const yRange = [0, 200]
 
+/*
+ * props needed: svg, width, height
+ */
+
 class MonthlyRate extends Component {
   constructor (props) {
     super(props)
 
-    d3.select("#hourlyAxis").remove()
-    d3.select("#basedata").remove()
-    d3.select("#testdata").remove()
-
     this.state = {
-      xScale: undefined,
-      yScale: undefined,
-      animating: undefined
+      line: undefined
     }
   }
 
@@ -37,15 +35,28 @@ class MonthlyRate extends Component {
                  .y(function(d){ return yScale(d.y) })
 
     svg.append("g")
-       .attr("id", "monthlyAxis")
+       .attr("id", "monthlyAxisX")
+       .attr("transform","translate(0," + height + ")")
+       .call(d3.axisBottom(xScale))
+    svg.append("g")
+       .attr("id", "monthlyAxisY")
        .call(d3.axisLeft(yScale))
+
+    this.setState({ line })
+  }
+
+  componentWillUnmount () {
+    d3.select("#monthlyAxisX").remove()
+    d3.select("#monthlyAxisY").remove()
+    d3.select("#testdata2").remove()
+    d3.select("#testdata1").remove()
   }
 
   render () {
     return (
       <div>
-        <Line svg={this.props.svg} line={this.state.line} name={'testdata1'} color={'blue'} animate={false} />
-        <Line svg={this.props.svg} line={this.state.line} name={'testdata2'} color={'red'} animate={true} />
+        <Line svg={this.props.svg} line={this.state.line} name={'testdata1'} animate={false} />
+        <Line svg={this.props.svg} line={this.state.line} name={'testdata2'} animate={true} />
       </div>
     )
   }

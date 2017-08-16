@@ -52,21 +52,17 @@ class Chart extends React.Component {
     super(props)
 
     this.getChart = this.getChart.bind(this)
-    this.isContainerSizeChange = this.isContainerSizeChange.bind(this)
-    this.setChartSize = this.setChartSize.bind(this)
+    this.getContainerSize = this.getContainerSize.bind(this)
+    this.setGraphSize = this.setGraphSize.bind(this)
     this.drawGraph = this.drawGraph.bind(this)
 
     this.state = {
       svg: undefined,
       margin: {top: 30, right: 20, bottom: 30, left: 50},
+      marginMobile: {top: 20, right: 10, bottom: 30, left: 35},
       chartSize: {
         width: 500,
         height: 300
-      },
-      chartFunc: {
-        xScale: undefined,
-        yScale: undefined,
-        line: undefined
       }
     }
   }
@@ -75,8 +71,6 @@ class Chart extends React.Component {
     const faux = this.props.connectFauxDOM('div', 'graph')
 
     let { margin } = this.state
-    // let width = this.props.width - margin.left - margin.right
-    // let height = this.props.height - margin.top - margin.bottom
     let { width, height } = this.state.chartSize
 
     d3.select(faux)
@@ -92,24 +86,20 @@ class Chart extends React.Component {
   componentWillReceiveProps (nextProps) {
     if( (this.props.windowWidth != nextProps.windowWidth)
     ||  (this.props.windowHeight != nextProps.windowHeight)){
-
-      let size = this.isContainerSizeChange()
+      //screen size changed, adjust graph size
+      let size = this.getContainerSize()
       if( size.width != undefined ){
-        if( this.getChart() != undefined ){
-          this.setChartSize(size.width, size.height)
-        }
+        this.setGraphSize(size.width, size.height)
       }
-
     }
   }
 
   componentDidMount () {
-    let size = this.isContainerSizeChange()
+    let size = this.getContainerSize()
     if( size.width != undefined ){
-      if( this.getChart() != undefined ){
-        this.setChartSize(size.width, size.height)
-      }
+      this.setGraphSize(size.width, size.height)
     }
+    this.getChart()
   }
 
   getChart () {
@@ -123,33 +113,40 @@ class Chart extends React.Component {
     if( this.state.svg == undefined ){
       this.setState({svg: selection})
     }
+
     return selection
   }
 
-  isContainerSizeChange () {
+  getContainerSize () {
     if( this.containerRef != null ){
-      let width = this.containerRef.clientWidth
-      let height = this.containerRef.clientHeight
-
-      if( (width!=undefined) && (height!=undefined) ){
-        let preWidth = this.state.chartSize.width
-        let preHeight = this.state.chartSize.height
-        if( (width!=preWidth) || (height!=preHeight) ){
-          let size = {width, height}
-          this.setState({chartSize: size})
-          return size
-        }
+      let size = {
+        width: this.containerRef.clientWidth,
+        height: this.containerRef.clientHeight
       }
+      return size
     }
     return {width: undefined, height: undefined}
   }
 
-  setChartSize (width, height) {
+  setGraphSize (width, height) {
     let container = d3.select("#graphContainer")
-    container.attr("width", width)
-             .attr("height", height)
+    let group = d3.select("#graphGroup")
+    let margin = (this.props.isMobile) ? this.state.marginMobile : this.state.margin
 
-    // TODO: svg need to change margin too
+    if( (!container.empty()) && (!group.empty()) ){
+      let size = {
+        width: width - margin.left - margin.right,
+        height: height - margin.top - margin.bottom
+      }
+      container.attr("width", width)
+               .attr("height", height)
+      group.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+      this.setState({chartSize: size})
+
+      return true
+    }
+    setTimeout(this.setGraphSize, 1000, width, height)
   }
 
   drawGraph () {
@@ -164,17 +161,19 @@ class Chart extends React.Component {
                     height={this.state.chartSize.height} />
       )
     }else{
-      return (<MonthlyRate svg={this.state.svg}
-                           width={this.state.chartSize.width}
-                           height={this.state.chartSize.height} />)
+      return (
+        <MonthlyRate svg={this.state.svg}
+                     width={this.state.chartSize.width}
+                     height={this.state.chartSize.height} />
+      )
     }
   }
 
   render () {
     return (
-      <Container innerRef={comp => this.containerRef = comp}>
+      <Container>
         <Wrapper>
-          <ChartContainer>
+          <ChartContainer innerRef={comp => this.containerRef = comp}>
           { this.props.graph }
           { this.drawGraph() }
           </ChartContainer>
@@ -193,6 +192,7 @@ function mapStateToProps (state) {
     windowWidth: _.get(state, 'section.windowWidth', 600),
     windowHeight: _.get(state, 'section.windowHeight', 600),
     sectionIndex: _.get(state, 'section.sectionIndex', 0),
+    isMobile: _.get(state, 'section.isMobile', true)
   })
 }
 
