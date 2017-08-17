@@ -167,7 +167,7 @@ class Home extends React.Component {
           <title>{appConfig.title}</title>
         </Head>
         <OuterCropper>
-          <Chart chartKey={'chart-hourly-1'} />
+          <Chart />
           {
             isMobile ? (<Swipeable
               onSwiping={this._swiping}

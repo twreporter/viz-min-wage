@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
+import * as d3 from 'd3'
 
+import get from 'lodash/get'
+import { connect } from 'react-redux'
+import { chartsContent } from '../constants/chartsContent'
 /*
  * we use original css syntax in this module
  */
+
+ const _ = {
+   get,
+ }
+
 class Marker extends Component {
   constructor(props) {
     super(props)
 
     this.draw = this.draw.bind(this)
 
-    this.state = {
-      drawn: false,
-    }
+    // this.state = {
+    //   drawn: false,
+    // }
   }
 
   componentDidMount() {
@@ -19,9 +28,17 @@ class Marker extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.drawn === false) {
+    if (this.props.chartKey !== nextProps.chartKey) {
+      d3.select(`#marker${this.props.pos.start}`).remove()
+    }
+
+    if (nextProps.chartKey in chartsContent) {
       this.draw(nextProps.xScale)
     }
+  }
+
+  componentWillUnmount() {
+    d3.select(`#marker${this.props.pos.start}`).remove()
   }
 
   draw(xScale) {
@@ -41,7 +58,7 @@ class Marker extends Component {
        .duration(1000)
        .attr('width', xScale(pos.end) - xScale(pos.start))
 
-    this.setState({ drawn: true })
+    // this.setState({ drawn: true })
   }
 
   render() {
@@ -51,4 +68,10 @@ class Marker extends Component {
   }
 }
 
-export default Marker
+function mapStateToProps(state) {
+  return ({
+    chartKey: _.get(state, 'section.sectionKey', ''),
+  })
+}
+
+export default connect(mapStateToProps)(Marker)

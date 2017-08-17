@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
+import get from 'lodash/get'
+import { connect } from 'react-redux'
 
 import { data } from './Data'
 import { getColor } from './utils'
+import { chartsContent } from '../constants/chartsContent'
+
+
+const _ = {
+  get,
+}
 /*
  * we use original css syntax in this module
  */
@@ -14,16 +22,34 @@ class Line extends Component {
     this.animate = this.animate.bind(this)
     this.draw = this.draw.bind(this)
 
-    this.state = {
-      drawn: false,
-    }
+    // this.state = {
+    //   drawn: false,
+    // }
+  }
+
+  componentDidMount() {
+    // console.log('line mount')
+    this.draw(this.props.painting.svg,
+              this.props.line,
+              this.props.name,
+              this.props.animate)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.draw(nextProps.painting.svg,
-              nextProps.line,
-              nextProps.name,
-              nextProps.animate)
+    if (this.props.chartKey !== nextProps.chartKey) {
+      d3.select(`#${this.props.name}`).remove()
+    }
+
+    if (nextProps.chartKey in chartsContent) {
+      this.draw(nextProps.painting.svg,
+                nextProps.line,
+                nextProps.name,
+                nextProps.animate)
+    }
+  }
+
+  componentWillUnmount() {
+    d3.select(`#${this.props.name}`).remove()
   }
 
   draw(svg, line, name, animate) {
@@ -41,7 +67,7 @@ class Line extends Component {
       setTimeout(this.animate, 0, name)
     }
 
-    this.setState({ drawn: true })
+    // this.setState({ drawn: true })
   }
 
   animate(name) {
@@ -76,4 +102,10 @@ Line.defaultProps = {
   animate: false,
 }
 
-export default Line
+function mapStateToProps(state) {
+  return ({
+    chartKey: _.get(state, 'section.sectionKey', ''),
+  })
+}
+
+export default connect(mapStateToProps)(Line)

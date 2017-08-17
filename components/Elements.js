@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import { connect } from 'react-redux'
 
-import { slidesContent } from '../constants/slidesContent'
+import { chartsContent } from '../constants/chartsContent'
 import { ELEMENT_TYPE } from '../constants/chart-types'
 // import { scripts } from './Scripts'
 import Axis from './Axis'
@@ -19,12 +19,12 @@ class Elements extends Component {
   constructor(props) {
     super(props)
 
-    this.setElementArr = this.setElementArr.bind(this)
+    // this.setElementArr = this.setElementArr.bind(this)
     this.setFuncState = this.setFuncState.bind(this)
 
     this.state = {
       line: undefined,
-      xScale: undefined
+      xScale: undefined,
     }
 
     // this.showElements = this.showElements.bind(this)
@@ -98,56 +98,43 @@ class Elements extends Component {
     this.setState({ line, xScale })
   }
 
-  setElementArr(painting, line) {
-    let arr = []
-    if ((this.state.line!==undefined) && (this.state.xScale!==undefined)) {
-
-      slidesContent.map((val, idx) => {
-        if (val.key === this.props.chartKey) {
-          val.elements.map((ele, index) => {
-            if (ele.type === ELEMENT_TYPE.line) {
-              arr.push(
-                <Line
-                  key={idx}
-                  name={ele.dataName}
-                  painting={painting}
-                  line={line}
-                  animate={ele.animate}
-                />
-              )
-            }
-
-            if (ele.type === ELEMENT_TYPE.marker) {
-              arr.push(
-                <Marker
-                  key={idx}
-                  pos={ele.pos}
-                />
-              )
-            }
-          })
-        }
-      })
-    }
-
-    return arr
-  }
+  // setElementArr() {
+  //   const arr = []
+  //
+  //   if (this.state.line === undefined) {
+  //     return []
+  //   }
+  //
+  //   if (this.props.chartKey in chartsContent) {
+  //     chartsContent[this.props.chartKey].elements.map((val, idx) => {
+  //
+  //       if (val.type === ELEMENT_TYPE.line) {
+  //         arr.push(
+  //           <Line
+  //             key={idx}
+  //             name={val.dataName}
+  //             painting={this.props.painting}
+  //             line={this.state.line}
+  //             animate={val.animate}
+  //           />
+  //         )
+  //       }
+  //
+  //     })
+  //   }
+  //   // console.log(arr)
+  //   return arr
+  // }
 
   render() {
-    let range = {}
-    slidesContent.map((val, idx) => {
-      if (val.key === this.props.chartKey) {
-        range = val.range
-      }
-    })
     return (
-      <Axis
-        painting={this.props.painting}
-        range={range}
-        setFunc={this.setFuncState}
-      >
-        { this.setElementArr(this.props.painting, this.state.line) }
-      </Axis>
+
+        <Axis
+           chartKey={this.props.chartKey}
+           painting={this.props.painting}
+           setFunc={this.setFuncState}
+        />
+
     )
   }
 }

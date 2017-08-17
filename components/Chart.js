@@ -164,7 +164,7 @@ class Chart extends React.Component {
 
     return (
       <Elements
-        chartKey={this.props.chartKey}
+        chartKey={this.props.sectionKey}
         painting={paint}
       />
     )
@@ -194,7 +194,7 @@ Chart.defaultProps = {
 
 Chart.propTypes = {
   isMobile: PropTypes.bool,
-  sectionIndex: PropTypes.number,
+  sectionKey: PropTypes.string,
   windowHeight: PropTypes.number,
   windowWidth: PropTypes.number,
 }
@@ -203,7 +203,7 @@ function mapStateToProps(state) {
   return ({
     windowWidth: _.get(state, 'section.windowWidth', 600),
     windowHeight: _.get(state, 'section.windowHeight', 600),
-    sectionIndex: _.get(state, 'section.sectionIndex', 0),
+    sectionKey: _.get(state, 'section.sectionKey', ''),
     isMobile: _.get(state, 'section.isMobile', true),
   })
 }
