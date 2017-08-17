@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import OverlayText from './OverlayText'
 import Row from './Row'
 import Slide from './Slide'
+import Cover from './Cover'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -12,6 +13,9 @@ class Content extends React.Component {
   render() {
     return (
       <Wrapper>
+        <Slide>
+          <Cover title={'22K夠用嗎？基本工資 12 年凍漲的真相'} />
+        </Slide>
         <Slide>
           <Row>
             <OverlayText>

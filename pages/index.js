@@ -135,7 +135,7 @@ class Home extends React.Component {
     const percent = Math.round((100 * nextIndex) / (slideConfig.totalCnt - 1))
     this.props.setSectionIndex(nextIndex)
     this.setState({ percent })
-    this._moveContentByY(newTop, swipeConfig.duration)
+    this._moveContentByY(newTop, swipeConfig.duration, 'easeInOutQuart')
   }
 
   // not a viable swipe: move back to the previous position
@@ -143,14 +143,14 @@ class Home extends React.Component {
     this.setState({ isMoving: true })
     const { sectionIndex, windowHeight } = this.props
     const newTop = -1 * sectionIndex * windowHeight
-    this._moveContentByY(newTop, swipeConfig.sDuration)
+    this._moveContentByY(newTop, swipeConfig.sDuration, 'easeInOutSine')
   }
 
-  _moveContentByY(newTop, duration) {
+  _moveContentByY(newTop, duration, easeOption) {
     anime({ targets: this.contentWrapper,
       top: newTop,
       duration,
-      easing: 'easeInOutSine',
+      easing: easeOption,
     }).finished.then(() => {
       this.setState({ isMoving: false, topY: newTop, deltaY: 0 })
     })
