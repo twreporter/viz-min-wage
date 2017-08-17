@@ -11,7 +11,7 @@ const _ = {
 
 const initState = {
   sectionIndex: 0,
-  sectionKey: 'cover',
+  sectionKey: slideBeginingKey,
   isMobile: false,
   windowWidth: 600,
   windowHeight: 600,

@@ -1,6 +1,17 @@
-import styled from 'styled-components'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { breakpoints } from '../styles/common-variables'
 import { rem, screen } from '../styles/utils'
+import { connect } from 'react-redux'
+import { get, has } from 'lodash'
+import illustrationData from '../constants/illustrationData'
+import styled from 'styled-components'
+import Illustration from './Illustration'
+
+const _ = {
+  get,
+  has,
+}
 
 const Container = styled.div`
   position: fixed;
@@ -36,12 +47,36 @@ const ChartContainer = styled.div`
   `}
 `
 
-const Chart = () => (
-  <Container>
-    <Wrapper>
-      <ChartContainer />
-    </Wrapper>
-  </Container>
-  )
+class Chart extends React.Component {
+  render() {
+    const { sectionKey } = this.props
+    const isIllustration = _.has(illustrationData, sectionKey)
 
-export default Chart
+    return (
+      <Container>
+        <Wrapper>
+          <ChartContainer>
+            {isIllustration ? <Illustration /> : null }
+          </ChartContainer>
+        </Wrapper>
+      </Container>
+    )
+  }
+}
+
+
+function mapStateToProps(state) {
+  return {
+    sectionKey: _.get(state, 'section.sectionKey', 0),
+  }
+}
+
+Chart.defaultProps = {
+  sectionKey: '',
+}
+
+Chart.propTypes = {
+  sectionKey: PropTypes.string,
+}
+
+export default connect(mapStateToProps)(Chart)

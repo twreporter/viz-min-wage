@@ -15,7 +15,7 @@ const OverlayText = styled.div`
     padding: 0.5rem 1rem 2rem 1rem;
     top: 50vh;
     height: 50vh;
-    line-height: 1.65;
+    line-height: 1.6;
     font-size: ${fonts.size.medium};
   `}
 
@@ -31,6 +31,18 @@ const OverlayText = styled.div`
 
   h2 + p {
     margin-top: 0.3rem;
+  }
+
+  h4 {
+    text-align: center;
+    color: ${colors.textLightGrey};
+  }
+
+  p {
+    ${screen.mobile`
+      margin: 0.25rem 0;
+    `}
+    margin: 0.7rem 0;
   }
 `
 export default OverlayText
