@@ -26,6 +26,10 @@ const slidesContent = [
   },
 ]
 
+const slideBeginingKey = 'cover'
+
+const slideEndingKey = 'footer'
+
 const slidesCnt = slidesContent.length + slideConfig.extraCnt
 
-export { slidesContent, slidesCnt, coverTitle }
+export { slidesContent, slidesCnt, coverTitle, slideBeginingKey, slideEndingKey }
