@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const ChartContainer = styled.div`
   position: absolute;
-  background-color: #39CCCC;
+  border: 2px solid #39CCCC;
   top: 0%;
   left: 0%;
   width: 100%;
@@ -30,7 +30,8 @@ const ChartContainer = styled.div`
     right: 50%;
     transform: translate(0, -50%);
     width: 50%;
-    height: 8rem;
+    height: 50vh;
+    min-height: 16rem;
     max-width: ${rem(breakpoints.large.min / 2)};
   `}
 `
