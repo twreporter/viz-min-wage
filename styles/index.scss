@@ -10,15 +10,13 @@
 
 $sans-serif: source-han-sans-traditional,Noto Sans TC,PingFang TC,Apple LiGothic Medium,Roboto,Microsoft JhengHei,Lucida Grande,Lucida Sans Unicode,sans-serif;
 
-html {
-  ::selection {
-    background: rgba(#59d1c6, 0.9);
-    color: #fff;
-  }
+::selection {
+  color: #1f1f1f;
+  background: rgba(#e2b199, 0.8);
 }
 
 body {
-  background: #d3d3d3;
+  background: #efefef;
   font-family: $sans-serif;
   line-height: 1.8;
   letter-spacing: 0.3px;

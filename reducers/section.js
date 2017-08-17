@@ -1,6 +1,7 @@
 import * as types from '../constants/action-types'
 import { appConfig } from '../config'
 import { slidesCnt } from '../constants/slidesContent'
+import { slidesContent, slideBeginingKey, slideEndingKey } from '../constants/slidesContent'
 
 import { assign } from 'lodash'
 
@@ -10,6 +11,7 @@ const _ = {
 
 const initState = {
   sectionIndex: 0,
+  sectionKey: 'cover',
   isMobile: false,
   windowWidth: 600,
   windowHeight: 600,
@@ -34,8 +36,15 @@ export default function (state = initState, action) {
     case types.SET_SECTION_INDEX: {
       const { index } = action
       if (index >= 0 && index < slidesCnt) {
+        let sectionKey = slideBeginingKey
+        if (index >= slidesCnt - 1) {
+          sectionKey = slideEndingKey
+        } else if (index > 0) {
+          sectionKey = slidesContent[index - 1].key
+        }
         return _.assign({}, state, {
           sectionIndex: index,
+          sectionKey,
         })
       }
       return state
