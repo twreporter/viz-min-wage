@@ -5,7 +5,7 @@ import { screen } from '../styles/utils'
 const OverlayText = styled.div`
   position: absolute;
   left: 50%;
-  padding: 3rem 2rem 2rem 1rem;
+  padding: 3rem 1.3rem 2rem 3rem;
   top: 5vh;
   font-size: ${fonts.size.large};
   color: ${colors.textGrey};
