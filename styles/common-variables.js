@@ -12,6 +12,7 @@ const fonts = {
     h1: '28px',
     h2: '20px',
     sectionTitle: '24px',
+    h1Desktop: '42px',
     largeNum: '70px',
   },
   weight: {
@@ -31,6 +32,7 @@ const colors = {
   black: '#393939',
   white: '#ffffff', // 255
   red: '#fc3434',
+  dark: '#08192d',
 }
 
 const breakpoints = {

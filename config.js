@@ -7,15 +7,15 @@ module.exports = {
     description: '專案簡介專案簡介專案簡介',
   },
   slideConfig: {
-    totalCnt: 3,
+    totalCnt: 5,
   },
   scrollConfig: {
     offset: 0.42,      // 42% of the window height, let the content of next slide appear earlier
   },
   swipeConfig: {
-    threshold: 0.1,    // 10% of the window height
-    duration: 600,     // animation duration (ms)
-    sDuration: 200,    // shorter animation duration - for the reverse directions (ms)
+    threshold: 0.11,    // 11% of the window height
+    duration: 400,     // animation duration (ms)
+    sDuration: 100,    // shorter animation duration - for the reverse directions (ms)
   },
   debounceTime: {
     window: {

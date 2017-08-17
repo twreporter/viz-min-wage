@@ -12,7 +12,7 @@ const OverlayText = styled.div`
   ${screen.mobile`
     left: 0;
     padding: 0.5rem 1rem 2rem 1rem;
-    top: 50vh;
+    top: 35vh;
     height: 50vh;
     line-height: 1.65;
     font-size: ${fonts.size.medium};
