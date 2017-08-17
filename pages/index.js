@@ -11,7 +11,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Swipeable from 'react-swipeable'
 import anime from 'animejs'
-import { appConfig, slideConfig, scrollConfig, debounceTime, swipeConfig } from '../config'
+import { appConfig, scrollConfig, debounceTime, swipeConfig } from '../config'
+import { slidesCnt } from '../constants/slidesContent'
 import { detectWindowSize, setSectionIndex } from '../actions/section'
 import { initStore } from '../store'
 import { screen } from '../styles/utils'
@@ -127,12 +128,12 @@ class Home extends React.Component {
     const { sectionIndex, windowHeight } = this.props
     const { deltaY } = this.state
     let nextIndex = (deltaY > 0) ? sectionIndex + 1 : sectionIndex - 1
-    if (nextIndex < 0 || nextIndex >= slideConfig.totalCnt) {
+    if (nextIndex < 0 || nextIndex >= slidesCnt) {
       nextIndex = sectionIndex
     }
 
     const newTop = -1 * nextIndex * windowHeight
-    const percent = Math.round((100 * nextIndex) / (slideConfig.totalCnt - 1))
+    const percent = Math.round((100 * nextIndex) / (slidesCnt - 1))
     this.props.setSectionIndex(nextIndex)
     this.setState({ percent })
     this._moveContentByY(newTop, swipeConfig.duration, 'easeInOutQuart')

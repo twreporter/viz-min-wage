@@ -10,7 +10,8 @@ const fonts = {
     large: '18px',
     xlarge: '20px',
     h1: '28px',
-    h2: '20px',
+    h2: '18px',
+    h2Large: '24px',
     sectionTitle: '24px',
     h1Desktop: '42px',
     largeNum: '70px',
@@ -27,8 +28,9 @@ const fonts = {
 }
 
 const colors = {
-  primaryColor: '#59d1c6',  // green
-  textGrey: '#4a4a4a',
+  primaryColor: '#d87341',  // orange
+  textGrey: '#303030',
+  grey: '#d6d6d6',
   black: '#393939',
   white: '#ffffff', // 255
   red: '#fc3434',
