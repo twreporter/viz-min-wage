@@ -30,6 +30,7 @@ const fonts = {
 const colors = {
   primaryColor: '#d87341',  // orange
   textGrey: '#303030',
+  textLightGrey: '#8f8f8f',
   grey: '#d6d6d6',
   black: '#393939',
   white: '#ffffff', // 255
