@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 
-import { ELEMENT_TYPE } from '../constants/chart-types'
+import { ELEMENT_TYPE } from '../constants/chart-constants'
 import { chartsContent } from '../constants/chartsContent'
 import Line from './Line'
 import Marker from './Marker'
-// import Elements from './Elements'
-// import { scripts } from './Scripts'
 
 class Axis extends Component {
   constructor(props) {
@@ -16,7 +15,6 @@ class Axis extends Component {
     this.drawElements = this.drawElements.bind(this)
 
     this.state = {
-    //   initDone: false,
       line: undefined,
       xScale: undefined,
     }
@@ -32,23 +30,17 @@ class Axis extends Component {
     if (this.props.chartKey !== nextProps.chartKey) {
       d3.selectAll('#Axis').remove()
       d3.selectAll('#grid').remove()
-      // this.props.setFunc(undefined, undefined)
       this.setState({ line: undefined, xScale: undefined })
 
       if (nextProps.chartKey in chartsContent) {
         this.drawAxis(nextProps.painting, nextProps.chartKey)
       }
     }
-  //   if (this.props.name !== nextProps.name) {
-  //     d3.selectAll('#Axis').remove()
-  //     d3.select('#grid').remove()
-  //
-  //     this.draw(nextProps.name, nextProps.painting)
-  //   }
   }
 
   drawAxis(painting, chartKey) {
     const { xRange, yRange } = chartsContent[chartKey].range
+    const tick = chartsContent[chartKey].tick
     const { svg, width, height } = painting
 
     const xScale = d3.scaleLinear()
@@ -62,14 +54,13 @@ class Axis extends Component {
                    .y(function(d) { return yScale(d.y) })
 
     this.setState({ line, xScale })
-    // this.props.setFunc(line, xScale)
 
     // draw grid
     svg.append('g')
        .attr('id', 'grid')
        .call(
          d3.axisLeft(yScale)
-           .ticks(5)
+           .ticks(tick)
            .tickSize(-width)
            .tickFormat('')
       )
@@ -96,10 +87,9 @@ class Axis extends Component {
           arr.push(
             <Line
               key={idx}
-              name={val.dataName}
+              data={val}
               painting={this.props.painting}
               line={this.state.line}
-              animate={val.animate}
             />
           )
         }
@@ -108,9 +98,9 @@ class Axis extends Component {
           arr.push(
             <Marker
               key={idx}
+              data={val}
               painting={this.props.painting}
               xScale={this.state.xScale}
-              pos={val.pos}
             />
           )
         }
@@ -129,6 +119,16 @@ class Axis extends Component {
       </div>
     )
   }
+}
+
+Axis.propTypes = {
+  painting: PropTypes.object,
+  chartKey: PropTypes.string,
+}
+
+Axis.defaultProps = {
+  painting: { svg: undefined, width: 300, height: 500 },
+  chartKey: '',
 }
 
 export default Axis
