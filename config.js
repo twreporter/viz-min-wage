@@ -7,7 +7,7 @@ module.exports = {
     description: '專案簡介專案簡介專案簡介',
   },
   slideConfig: {
-    totalCnt: 5,
+    extraCnt: 2,       // cover + footer => two additional slides
   },
   scrollConfig: {
     offset: 0.42,      // 42% of the window height, let the content of next slide appear earlier
