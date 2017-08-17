@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
 
-import Elements from './Elements'
-import { scripts } from './Scripts'
+// import Elements from './Elements'
+// import { scripts } from './Scripts'
 
 class Axis extends Component {
   constructor(props) {
@@ -10,41 +10,42 @@ class Axis extends Component {
 
     this.draw = this.draw.bind(this)
 
-    this.state = {
-      initDone: false,
-      line: undefined,
-      xScale: undefined,
-    }
+    // this.state = {
+    //   initDone: false,
+    //   line: undefined,
+    //   xScale: undefined,
+    // }
   }
 
   componentDidMount() {
-    this.draw(this.props.name, this.props.painting)
+    this.draw()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.name !== nextProps.name) {
-      d3.selectAll('#Axis').remove()
-      d3.select('#grid').remove()
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.name !== nextProps.name) {
+  //     d3.selectAll('#Axis').remove()
+  //     d3.select('#grid').remove()
+  //
+  //     this.draw(nextProps.name, nextProps.painting)
+  //   }
+  // }
 
-      this.draw(nextProps.name, nextProps.painting)
-    }
-  }
-
-  draw(name, painting) {
-    const script = scripts[name]
-    const { svg, width, height } = painting
+  draw() {
+    const { xRange, yRange } = this.props.range
+    const { svg, width, height } = this.props.painting
 
     const xScale = d3.scaleLinear()
-                     .domain(script.xRange)
+                     .domain(xRange)
                      .range([0, width])
     const yScale = d3.scaleLinear()
-                     .domain(script.yRange)
+                     .domain(yRange)
                      .range([height, 0])
     const line = d3.line()
                    .x(function(d) { return xScale(d.x) })
                    .y(function(d) { return yScale(d.y) })
 
-    this.setState({ line, xScale })
+    // this.setState({ line, xScale })
+    this.props.setFunc(line, xScale)
 
     // draw grid
     svg.append('g')
@@ -69,18 +70,10 @@ class Axis extends Component {
   }
 
   render() {
-    const alreadySetState = ((this.state.line !== undefined)
-                         && (this.state.xScale !== undefined))
+    // const alreadySetState = ((this.state.line !== undefined)
+    //                      && (this.state.xScale !== undefined))
     return (
       <div>
-        { alreadySetState ?
-          <Elements
-            parent={this.props.name}
-            painting={this.props.painting}
-            line={this.state.line}
-            xScale={this.state.xScale}
-          /> :
-          <div />}
       </div>
 
     )

@@ -8,7 +8,8 @@ import { withFauxDOM } from 'react-faux-dom'
 import get from 'lodash/get'
 import * as d3 from 'd3'
 
-import Axis from './Axis'
+import Elements from './Elements'
+// import Axis from './Axis'
 
 const _ = {
   get,
@@ -160,25 +161,12 @@ class Chart extends React.Component {
       height: this.state.chartSize.height,
     }
 
-    switch (this.props.sectionIndex) {
-      case 0:
-      case 2:
-        return (
-          <Axis
-            name={'HourlyRate'}
-            painting={paint}
-          />
-        )
-      case 1:
-        return (
-          <Axis
-            name={'MonthlyRate'}
-            painting={paint}
-          />
-        )
-      default:
-    }
-    return <div />
+    return (
+      <Elements
+        chartKey={this.props.chartKey}
+        painting={paint}
+      />
+    )
   }
 
   render() {

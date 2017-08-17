@@ -1,8 +1,20 @@
 import { slideConfig } from '../config'
+import { ELEMENT_TYPE } from '../constants/chart-types'
 
 const coverTitle = '22K夠用嗎？基本工資 12 年凍漲的真相'
 
 const slidesContent = [
+  {
+    key: 'chart-hourly-1',
+    range: {
+      xRange: [0, 10],
+      yRange: [0, 100],
+    },
+    elements: [
+      { type: ELEMENT_TYPE.line, dataName: 'basedata', animate: false },
+      { type: ELEMENT_TYPE.line, dataName: 'testdata1', animate: true },
+    ],
+  },
   {
     key: 'intro-1',
     text: '## 基本工資是什麼?\n 為什麼我們要在乎基本工資能不能幫助勞工生活呢?',
