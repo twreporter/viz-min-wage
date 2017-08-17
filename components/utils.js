@@ -10,6 +10,9 @@ export const getColor = (name) => {
     case 'testdata2':
       color = 'red'
       break
+    case 'marker':
+      color = 'red'
+      break
     default:
      color = 'black'
   }
