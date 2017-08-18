@@ -2,7 +2,7 @@ import { slideConfig } from '../config'
 
 const coverTitle = '要漲不漲的基本工資'
 const coverSubTitle = '為什麼薪水一直不夠用?'
-const publishedDate = '2017.8.18'
+const publishedDate = '2017.8.21'
 
 const slidesContent = [
   {
@@ -38,11 +38,16 @@ const slidesContent = [
     key: 'problem-agenda',
     text: '## 未明定時程與調整流程 \n' +
       '<p>辦法僅規範應於第三季進行審議，並未明定每年開會、決議以及新工資生效的時間。</p>' +
-      '<p>為避免流會，政府常需要拜託資方出席審議委員會。去年就曾發生資方集體拒絕出席審議會。</p>' +
-      '<p>而<u>韓國明確將基本工資審議時間、參與者權責明訂於法令中，若一定時間內未完成審議便算違法</u>，維持勞資政三方暢通的對話，才有年年調整的結果。</p>',
+      '<p>去年就曾發生資方集體拒絕出席審議會。</p>' +
+      '<p>而<u>韓國明確將基本工資審議時間</u>，維持勞資政三方暢通的對話，才有年年調整的結果。</p>',
     sideImg: null,
   },
 ]
+
+const authorsText = '<p>數據、文字整理 ｜ <span itemprop="author">葉瑜娟</span>、<span itemprop="author">王珣沛</span></p>' +
+                    '<p>設計 ｜ <span itemprop="author">黃禹禛</span></p>' +
+                    '<p>工程 ｜ <span itemprop="author">王珣沛</span>、<span itemprop="author">黃詩晏</span></p>'
+
 
 const slideBeginingKey = 'cover'
 
@@ -50,4 +55,4 @@ const slideEndingKey = 'footer'
 
 const slidesCnt = slidesContent.length + slideConfig.extraCnt
 
-export { slidesContent, slidesCnt, coverTitle, coverSubTitle, publishedDate, slideBeginingKey, slideEndingKey }
+export { slidesContent, slidesCnt, coverTitle, coverSubTitle, publishedDate, slideBeginingKey, slideEndingKey, authorsText }

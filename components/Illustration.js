@@ -18,6 +18,11 @@ const SvgWrapper = styled.div`
   transition: all 0.5s ease-in-out;
   transform: scale(0.8);
   opacity: 0;
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
 `
 
 const _ = {
@@ -43,7 +48,7 @@ class Illustration extends React.Component {
     const SvgIllustrations = _.map(illustrationData, (svg, key) => {
       const isShown = sectionKey === key
       return (
-        <SvgWrapper style={isShown ? cssSettings.show : cssSettings.hide}>
+        <SvgWrapper key={`i-${key}`} style={isShown ? cssSettings.show : cssSettings.hide}>
           {svg.component}
         </SvgWrapper>
       )
