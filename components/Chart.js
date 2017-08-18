@@ -7,6 +7,7 @@ import { get, has } from 'lodash'
 import illustrationData from '../constants/illustrationData'
 import styled from 'styled-components'
 import Illustration from './Illustration'
+import D3Graph from './D3Graph'
 
 const _ = {
   get,
@@ -55,8 +56,9 @@ class Chart extends React.Component {
     return (
       <Container>
         <Wrapper>
-          <ChartContainer>
+          <ChartContainer innerRef={comp => this.containerRef = comp}>
             {isIllustration ? <Illustration /> : null }
+            <D3Graph containerRef={this.containerRef} />
           </ChartContainer>
         </Wrapper>
       </Container>
