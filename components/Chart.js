@@ -34,6 +34,14 @@ const Wrapper = styled.div`
 const ChartContainer = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
+`
+
+const ChartOuter = styled.div`
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
   height: 50%;
 
   ${screen.largeThanMobile`
@@ -47,17 +55,10 @@ const ChartContainer = styled.div`
   `}
 
   > div {
+    position: relative;
     width: 100%;
     height: 100%;
   }
-`
-
-const ChartOuter = styled.div`
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
 `
 
 const IllustrationContainer = styled(ChartOuter)`
@@ -77,11 +78,11 @@ class Chart extends React.Component {
     return (
       <Container>
         <Wrapper>
-          <ChartContainer innerRef={comp => this.containerRef = comp}>
+          <ChartContainer>
             <IllustrationContainer style={isIllustration ? scaleInAnimation.show : scaleInAnimation.hide}>
               <Illustration />
             </IllustrationContainer>
-            <D3Container>
+            <D3Container innerRef={comp => this.containerRef = comp}>
               <D3Graph containerRef={this.containerRef} />
             </D3Container>
           </ChartContainer>
