@@ -76,9 +76,22 @@ const bps = {
   },
 }
 
+const scaleInAnimation = {
+  show: {
+    opacity: 1,
+    transform: 'scale(1)',
+  },
+  hide: {
+    opacity: 0,
+    transform: 'scale(0.8)',
+  },
+  transition: 'all 0.5s ease-in-out',
+}
+
 export {
   breakpoints,
   bps,
   colors,
   fonts,
+  scaleInAnimation,
 }
