@@ -9,7 +9,7 @@ import { get } from 'lodash'
 import { screen } from '../styles/utils'
 import styled from 'styled-components'
 import { coverTitle, coverSubTitle, publishedDate } from '../constants/slidesContent'
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import SalaryTop from '../static/salary-opening-1.svg'
 import SalaryBottom from '../static/salary-opening-2.svg'
 import Logo from '../static/salary-opening-logo.svg'
@@ -25,6 +25,7 @@ const SvgWrapper = styled.div`
 
   svg {
     width: 100%;
+    overflow: visible;
   }
 `
 
@@ -161,12 +162,28 @@ class Cover extends React.Component {
             <SalaryTop />
           </S1Wrapper>
           <TitleBox>
-            <HighlightBar />
-            <h1 itemProp="headline">{ coverTitle }</h1>
+            <ReactCSSTransitionGroup
+              transitionName="scale"
+              transitionAppear
+              transitionLeaveTimeout={0}
+            >
+              <div className="scale-appear">
+                <HighlightBar />
+                <h1 itemProp="headline">{ coverTitle }</h1>
+              </div>
+            </ReactCSSTransitionGroup>
           </TitleBox>
-          <SubtitleBox itemProp="alternativeHeadline">
-            { coverSubTitle }
-          </SubtitleBox>
+          <ReactCSSTransitionGroup
+            transitionName="element"
+            transitionAppear
+            transitionLeaveTimeout={0}
+          >
+            <div className="element-appear">
+              <SubtitleBox itemProp="alternativeHeadline">
+                { coverSubTitle }
+              </SubtitleBox>
+            </div>
+          </ReactCSSTransitionGroup>
           <LogoWrapper>
             <Logo />
             <PublishDate itemProp="datePublished">
