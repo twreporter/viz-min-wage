@@ -65,6 +65,10 @@ class Line extends Component {
 
   animate(name) {
     const animateLine = d3.select(`#${name}`)
+    if (animateLine.node() === null) {
+      animateLine.attr('visibility', 'visible')
+      return
+    }
     const length = animateLine.node().getTotalLength()
     animateLine.attr('stroke-dasharray', `${length} ${length}`)
                .attr('stroke-dashoffset', length)

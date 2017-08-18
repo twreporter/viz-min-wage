@@ -36,7 +36,7 @@ class D3Graph extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const faux = this.props.connectFauxDOM('div', 'graph')
 
     const { margin } = this.state
@@ -49,9 +49,7 @@ class D3Graph extends React.Component {
       .attr('height', height)
       .append('g')
       .attr('id', 'graphGroup')
-  }
 
-  componentDidMount() {
     const size = this.getContainerSize(this.props.containerRef)
     if (size.width !== undefined) {
       this.setGraphSize(size.width, size.height)
@@ -111,6 +109,7 @@ class D3Graph extends React.Component {
         width: width - margin.left - margin.right,
         height: height - margin.top - margin.bottom,
       }
+
       container.attr('width', width)
                .attr('height', height)
       group.attr('transform', `translate(${margin.left},${margin.top})`)
