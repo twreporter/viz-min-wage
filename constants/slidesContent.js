@@ -1,7 +1,7 @@
 import { slideConfig } from '../config'
 
-const coverTitle = '要漲不漲的基本工資'
-const coverSubTitle = '為什麼薪水一直不夠用?'
+const coverTitle = '到了 2018 年才 22K！'
+const coverSubTitle = '基本工資凍漲十年的真相'
 const publishedDate = '2017.8.21'
 
 const slidesContent = [

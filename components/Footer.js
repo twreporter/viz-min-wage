@@ -207,12 +207,10 @@ class Footer extends React.Component {
 }
 
 Footer.defaultProps = {
-  title: '',
   sectionIndex: 0,
 }
 
 Footer.propTypes = {
-  title: PropTypes.string,
   sectionIndex: PropTypes.number,
 }
 

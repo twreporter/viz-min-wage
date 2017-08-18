@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { breakpoints } from '../styles/common-variables'
@@ -8,6 +9,7 @@ import illustrationData from '../constants/illustrationData'
 import styled from 'styled-components'
 import Illustration from './Illustration'
 import D3Graph from './D3Graph'
+import { scaleInAnimation } from '../styles/common-variables'
 
 const _ = {
   get,
@@ -30,9 +32,7 @@ const Wrapper = styled.div`
 `
 
 const ChartContainer = styled.div`
-  position: absolute;
-  top: 0%;
-  left: 0%;
+  position: relative;
   width: 100%;
   height: 50%;
 
@@ -52,6 +52,23 @@ const ChartContainer = styled.div`
   }
 `
 
+const ChartOuter = styled.div`
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+`
+
+const IllustrationContainer = styled(ChartOuter)`
+  transition: ${scaleInAnimation.transition};
+  transform: ${scaleInAnimation.hide.transform};
+  opacity: ${scaleInAnimation.hide.opacity};
+`
+
+const D3Container = styled(ChartOuter)`
+`
+
 class Chart extends React.Component {
   render() {
     const { sectionKey } = this.props
@@ -61,8 +78,12 @@ class Chart extends React.Component {
       <Container>
         <Wrapper>
           <ChartContainer innerRef={comp => this.containerRef = comp}>
-            {isIllustration ? <Illustration /> : null }
-            <D3Graph containerRef={this.containerRef} />
+            <IllustrationContainer style={isIllustration ? scaleInAnimation.show : scaleInAnimation.hide}>
+              <Illustration />
+            </IllustrationContainer>
+            <D3Container>
+              <D3Graph containerRef={this.containerRef} />
+            </D3Container>
           </ChartContainer>
         </Wrapper>
       </Container>
