@@ -6,6 +6,7 @@ import { ELEMENT_TYPE } from '../constants/chart-constants'
 import { chartsContent } from '../constants/chartsContent'
 import Line from './Line'
 import Marker from './Marker'
+import Legend from './Legend'
 
 class Axis extends Component {
   constructor(props) {
@@ -28,7 +29,8 @@ class Axis extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.chartKey !== nextProps.chartKey) {
-      d3.selectAll('#Axis').remove()
+      d3.selectAll('#AxisX').remove()
+      d3.selectAll('#AxisY').remove()
       d3.selectAll('#grid').remove()
       this.setState({ line: undefined, xScale: undefined })
 
@@ -41,6 +43,7 @@ class Axis extends Component {
   drawAxis(painting, chartKey) {
     const { xRange, yRange } = chartsContent[chartKey].range
     const tick = chartsContent[chartKey].tick
+    const { axisUnit } = chartsContent[chartKey]
     const { svg, width, height } = painting
 
     const xScale = d3.scaleLinear()
@@ -58,6 +61,9 @@ class Axis extends Component {
     // draw grid
     svg.append('g')
        .attr('id', 'grid')
+       .attr('stroke', '#303030')
+       .attr('opacity', '0.8')
+       .attr('stroke-width', '1')
        .call(
          d3.axisLeft(yScale)
            .ticks(tick)
@@ -66,15 +72,44 @@ class Axis extends Component {
       )
     // draw axis
     svg.append('g')
-       .attr('id', 'Axis')
+       .attr('id', 'AxisX')
        .attr('transform', `translate(0,${height})`)
+       .attr('fill', '#303030')
+       .attr('opacity', '0.8')
        .call(d3.axisBottom(xScale))
     svg.append('g')
-       .attr('id', 'Axis')
+       .attr('id', 'AxisY')
+       .attr('fill', '#303030')
+       .attr('opacity', '0.8')
        .call(d3.axisLeft(yScale))
 
     d3.selectAll('.domain').remove()
-    d3.selectAll('#Axis .tick line').remove()
+    d3.selectAll('#AxisX .tick line').remove()
+    d3.selectAll('#AxisY .tick line').remove()
+
+    const axisXLabels = d3.selectAll('#AxisX .tick text')
+    const lastX = axisXLabels.size() - 1
+    d3.selectAll('#AxisX .tick text')
+      .each(function (data, idx) {
+        if (idx === lastX) {
+          d3.select(this)
+            .text(axisUnit.x)
+            .attr('transform', 'translate(-5,0)')
+        }
+      })
+
+    const axisYLabels = d3.selectAll('#AxisY .tick')
+    const lastY = axisYLabels.size() - 1
+    d3.selectAll('#AxisY .tick')
+      .each(function (data, idx) {
+        if (idx === lastY) {
+          d3.select(this)
+            .append('text')
+            .text(axisUnit.y)
+            .attr('fill', 'black')
+            .attr('transform', 'translate(0,-15)')
+        }
+      })
   }
 
   drawElements() {
@@ -115,6 +150,10 @@ class Axis extends Component {
                          && (this.state.xScale !== undefined))
     return (
       <div>
+        <Legend
+          chartKey={this.props.chartKey}
+          painting={this.props.painting}
+        />
         {alreadySetState ? (this.drawElements()) : <div />}
       </div>
     )

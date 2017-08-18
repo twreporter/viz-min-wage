@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { withFauxDOM } from 'react-faux-dom'
 import { get } from 'lodash'
 
+import { LEGEND_CONFIG } from '../constants/chart-constants'
 import Axis from './Axis'
 
 const _ = {
@@ -22,8 +23,12 @@ class D3Graph extends React.Component {
 
     this.state = {
       svg: undefined,
-      margin: { top: 30, right: 20, bottom: 30, left: 50 },
-      marginMobile: { top: 20, right: 10, bottom: 30, left: 35 },
+      margin: {
+        top: 30,
+        right: 35,
+        bottom: 10 + LEGEND_CONFIG.height,
+        left: 50,
+      },
       chartSize: {
         width: 500,
         height: 300,
@@ -31,7 +36,7 @@ class D3Graph extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const faux = this.props.connectFauxDOM('div', 'graph')
 
     const { margin } = this.state
@@ -44,10 +49,7 @@ class D3Graph extends React.Component {
       .attr('height', height)
       .append('g')
       .attr('id', 'graphGroup')
-      .attr('transform', `translate(${margin.left},${margin.top})`)
-  }
 
-  componentDidMount() {
     const size = this.getContainerSize(this.props.containerRef)
     if (size.width !== undefined) {
       this.setGraphSize(size.width, size.height)
@@ -96,13 +98,18 @@ class D3Graph extends React.Component {
   setGraphSize(width, height) {
     const container = d3.select('#graphContainer')
     const group = d3.select('#graphGroup')
-    const margin = (this.props.isMobile) ? this.state.marginMobile : this.state.margin
+    const margin = this.state.margin
+
+    if (this.props.isMobile) {
+      margin.top = 50
+    }
 
     if ((!container.empty()) && (!group.empty())) {
       const size = {
         width: width - margin.left - margin.right,
         height: height - margin.top - margin.bottom,
       }
+
       container.attr('width', width)
                .attr('height', height)
       group.attr('transform', `translate(${margin.left},${margin.top})`)
@@ -161,8 +168,8 @@ D3Graph.propTypes = {
 
 function mapStateToProps(state) {
   return ({
-    windowWidth: _.get(state, 'section.windowWidth', 600),
-    windowHeight: _.get(state, 'section.windowHeight', 600),
+    windowWidth: _.get(state, 'section.windowWidth', 500),
+    windowHeight: _.get(state, 'section.windowHeight', 300),
     sectionKey: _.get(state, 'section.sectionKey', ''),
     isMobile: _.get(state, 'section.isMobile', true),
   })

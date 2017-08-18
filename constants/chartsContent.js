@@ -6,9 +6,19 @@ export const chartsContent = {
       xRange: [0, 10],
       yRange: [0, 100],
     },
+    axisUnit: {
+      x: '年份',
+      y: '時薪(元)',
+    },
     tick: 5,
     elements: [
-      { type: ELEMENT_TYPE.line, dataName: 'basedata', animate: false },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'basedata',
+        color: '#275623',
+        legendText: '基準',
+        animate: false,
+      },
     ],
   },
   'intro-2': {
@@ -16,9 +26,26 @@ export const chartsContent = {
       xRange: [0, 10],
       yRange: [0, 100],
     },
+    axisUnit: {
+      x: '年份',
+      y: '月薪(元)',
+    },
     tick: 5,
     elements: [
-      { type: ELEMENT_TYPE.line, dataName: 'testdata2', animate: true },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'testdata2',
+        color: '#275623',
+        legendText: '資料二',
+        animate: false,
+      },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'testdata',
+        color: '#d87341',
+        legendText: '資料零',
+        animate: true,
+      },
     ],
   },
   'intro-3': {
@@ -26,10 +53,23 @@ export const chartsContent = {
       xRange: [0, 10],
       yRange: [0, 200],
     },
+    axisUnit: {
+      x: '年份',
+      y: '年薪(萬元)',
+    },
     tick: 5,
     elements: [
-      { type: ELEMENT_TYPE.marker, pos: { start: 3, end: 7 } },
-      { type: ELEMENT_TYPE.line, dataName: 'testdata1', animate: true },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'testdata1',
+        color: '#275623',
+        legendText: '資料一',
+        animate: true,
+      },
+      {
+        type: ELEMENT_TYPE.marker,
+        pos: { start: 3, end: 7 },
+      },
     ],
   },
 }

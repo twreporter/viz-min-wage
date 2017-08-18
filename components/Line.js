@@ -5,7 +5,6 @@ import get from 'lodash/get'
 import { connect } from 'react-redux'
 
 import { data } from './Data'
-import { getColor } from './utils'
 import { chartsContent } from '../constants/chartsContent'
 import { STROKE_WIDTH_STR, STROKE_ANIMATION_DURATION } from '../constants/chart-constants'
 
@@ -28,19 +27,19 @@ class Line extends Component {
     this.draw(this.props.painting.svg,
               this.props.line,
               this.props.data.dataName,
-              this.props.data.animate)
+              this.props.data.animate,
+              this.props.data.color)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.chartKey !== nextProps.chartKey) {
-      d3.select(`#${this.props.data.dataName}`).remove()
-    }
+    d3.select(`#${this.props.data.dataName}`).remove()
 
     if (nextProps.chartKey in chartsContent) {
       this.draw(nextProps.painting.svg,
                 nextProps.line,
                 nextProps.data.dataName,
-                nextProps.data.animate)
+                nextProps.data.animate,
+                nextProps.data.color)
     }
   }
 
@@ -48,11 +47,11 @@ class Line extends Component {
     d3.select(`#${this.props.data.dataName}`).remove()
   }
 
-  draw(svg, line, name, animate) {
+  draw(svg, line, name, animate, color) {
     svg.append('path')
        .attr('id', name)
        .attr('d', line(data[name]))
-       .attr('stroke', getColor(name))
+       .attr('stroke', color)
        .attr('stroke-linecap', 'round')
        .attr('fill', 'none')
        .attr('stroke-width', STROKE_WIDTH_STR)
@@ -66,6 +65,10 @@ class Line extends Component {
 
   animate(name) {
     const animateLine = d3.select(`#${name}`)
+    if (animateLine.node() === null) {
+      animateLine.attr('visibility', 'visible')
+      return
+    }
     const length = animateLine.node().getTotalLength()
     animateLine.attr('stroke-dasharray', `${length} ${length}`)
                .attr('stroke-dashoffset', length)
