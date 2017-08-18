@@ -20,15 +20,11 @@ const Container = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-`
-
-const Wrapper = styled.div`
-  position: relative;
   max-width: ${rem(breakpoints.large.min)};
-  width: 100%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 `
 
 const ChartContainer = styled.div`
@@ -61,13 +57,10 @@ const ChartOuter = styled.div`
   }
 `
 
-const IllustrationContainer = styled(ChartOuter)`
+const AnimationContainer = styled.div`
   transition: ${scaleInAnimation.transition};
   transform: ${scaleInAnimation.hide.transform};
   opacity: ${scaleInAnimation.hide.opacity};
-`
-
-const D3Container = styled(ChartOuter)`
 `
 
 class Chart extends React.Component {
@@ -77,16 +70,18 @@ class Chart extends React.Component {
 
     return (
       <Container>
-        <Wrapper>
-          <ChartContainer>
-            <IllustrationContainer style={isIllustration ? scaleInAnimation.show : scaleInAnimation.hide}>
+        <ChartContainer>
+          <ChartOuter>
+            <AnimationContainer style={isIllustration ? scaleInAnimation.show : scaleInAnimation.hide}>
               <Illustration />
-            </IllustrationContainer>
-            <D3Container innerRef={comp => this.containerRef = comp}>
+            </AnimationContainer>
+          </ChartOuter>
+          <ChartOuter innerRef={comp => this.containerRef = comp}>
+            <div>
               <D3Graph containerRef={this.containerRef} />
-            </D3Container>
-          </ChartContainer>
-        </Wrapper>
+            </div>
+          </ChartOuter>
+        </ChartContainer>
       </Container>
     )
   }
