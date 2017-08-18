@@ -4,7 +4,7 @@ import Slide from './Slide'
 import Cover from './Cover'
 import Footer from './Footer'
 import InnerSlide from './InnerSlide'
-import { slidesContent, coverTitle, slideBeginingKey, slideEndingKey } from '../constants/slidesContent'
+import { slidesContent, slideBeginingKey, slideEndingKey } from '../constants/slidesContent'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -21,7 +21,7 @@ class Content extends React.Component {
     return (
       <Wrapper>
         <Slide key={slideBeginingKey} index={0}>
-          <Cover title={coverTitle} />
+          <Cover />
         </Slide>
         { MainSlides }
         <Slide key={slideEndingKey} index={slidesContent.length + 1}>
