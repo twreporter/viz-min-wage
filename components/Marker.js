@@ -29,10 +29,8 @@ class Marker extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.chartKey !== nextProps.chartKey) {
-      const { start, end } = this.props.data.pos
-      d3.select(`#marker${start}${end}`).remove()
-    }
+    const { start, end } = this.props.data.pos
+    d3.select(`#marker${start}${end}`).remove()
 
     if (nextProps.chartKey in chartsContent) {
       this.draw(nextProps.painting.svg,

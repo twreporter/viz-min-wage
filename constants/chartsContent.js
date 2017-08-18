@@ -8,7 +8,13 @@ export const chartsContent = {
     },
     tick: 5,
     elements: [
-      { type: ELEMENT_TYPE.line, dataName: 'basedata', animate: false },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'basedata',
+        color: 'black',
+        legendText: '基準',
+        animate: false,
+      },
     ],
   },
   'intro-2': {
@@ -18,7 +24,20 @@ export const chartsContent = {
     },
     tick: 5,
     elements: [
-      { type: ELEMENT_TYPE.line, dataName: 'testdata2', animate: true },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'testdata2',
+        color: 'orange',
+        legendText: '資料二',
+        animate: true,
+      },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'testdata',
+        color: 'green',
+        legendText: '資料零',
+        animate: false,
+      },
     ],
   },
   'intro-3': {
@@ -28,8 +47,17 @@ export const chartsContent = {
     },
     tick: 5,
     elements: [
-      { type: ELEMENT_TYPE.marker, pos: { start: 3, end: 7 } },
-      { type: ELEMENT_TYPE.line, dataName: 'testdata1', animate: true },
+      {
+        type: ELEMENT_TYPE.marker,
+        pos: { start: 3, end: 7 },
+      },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'testdata1',
+        color: 'red',
+        legendText: '資料一',
+        animate: true,
+      },
     ],
   },
 }

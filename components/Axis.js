@@ -6,6 +6,7 @@ import { ELEMENT_TYPE } from '../constants/chart-constants'
 import { chartsContent } from '../constants/chartsContent'
 import Line from './Line'
 import Marker from './Marker'
+import Legend from './Legend'
 
 class Axis extends Component {
   constructor(props) {
@@ -115,6 +116,10 @@ class Axis extends Component {
                          && (this.state.xScale !== undefined))
     return (
       <div>
+        <Legend
+          chartKey={this.props.chartKey}
+          painting={this.props.painting}
+        />
         {alreadySetState ? (this.drawElements()) : <div />}
       </div>
     )
