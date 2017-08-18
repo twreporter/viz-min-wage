@@ -56,6 +56,7 @@ class Legend extends Component {
         legendSelection.append('text')
                        .attr('x', position + rectWidth + interRectText)
                        .attr('y', rectHeight)
+                       .attr('fill', '#303030')
                        .text(val.legendText)
         item = item + 1
         position = (item * position) + rectWidth + interRectText

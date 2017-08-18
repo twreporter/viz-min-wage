@@ -61,6 +61,7 @@ class Axis extends Component {
     // draw grid
     svg.append('g')
        .attr('id', 'grid')
+       .attr('fill', '#303030')
        .call(
          d3.axisLeft(yScale)
            .ticks(tick)
@@ -71,9 +72,13 @@ class Axis extends Component {
     svg.append('g')
        .attr('id', 'AxisX')
        .attr('transform', `translate(0,${height})`)
+       .attr('fill', '#303030')
+       .attr('opacity', '0.8')
        .call(d3.axisBottom(xScale))
     svg.append('g')
        .attr('id', 'AxisY')
+       .attr('fill', '#303030')
+       .attr('opacity', '0.8')
        .call(d3.axisLeft(yScale))
 
     d3.selectAll('.domain').remove()

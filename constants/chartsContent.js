@@ -15,7 +15,7 @@ export const chartsContent = {
       {
         type: ELEMENT_TYPE.line,
         dataName: 'basedata',
-        color: 'black',
+        color: '#275623',
         legendText: '基準',
         animate: false,
       },
@@ -35,16 +35,16 @@ export const chartsContent = {
       {
         type: ELEMENT_TYPE.line,
         dataName: 'testdata2',
-        color: 'orange',
+        color: '#275623',
         legendText: '資料二',
-        animate: true,
+        animate: false,
       },
       {
         type: ELEMENT_TYPE.line,
         dataName: 'testdata',
-        color: 'green',
+        color: '#d87341',
         legendText: '資料零',
-        animate: false,
+        animate: true,
       },
     ],
   },
@@ -60,15 +60,15 @@ export const chartsContent = {
     tick: 5,
     elements: [
       {
-        type: ELEMENT_TYPE.marker,
-        pos: { start: 3, end: 7 },
-      },
-      {
         type: ELEMENT_TYPE.line,
         dataName: 'testdata1',
-        color: 'red',
+        color: '#275623',
         legendText: '資料一',
         animate: true,
+      },
+      {
+        type: ELEMENT_TYPE.marker,
+        pos: { start: 3, end: 7 },
       },
     ],
   },
