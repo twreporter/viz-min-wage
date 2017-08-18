@@ -15,7 +15,7 @@ const OverlayText = styled.div`
     padding: 0.5rem 1rem 2rem 1rem;
     top: 50vh;
     height: 50vh;
-    line-height: 1.6;
+    line-height: 1.56;
     font-size: ${fonts.size.medium};
   `}
 

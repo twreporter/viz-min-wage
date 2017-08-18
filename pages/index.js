@@ -148,13 +148,15 @@ class Home extends React.Component {
   }
 
   _moveContentByY(newTop, duration, easeOption) {
-    anime({ targets: this.contentWrapper,
-      top: newTop,
-      duration,
-      easing: easeOption,
-    }).finished.then(() => {
-      this.setState({ isMoving: false, topY: newTop, deltaY: 0 })
-    })
+    if (this.contentWrapper) {
+      anime({ targets: this.contentWrapper,
+        top: newTop,
+        duration,
+        easing: easeOption,
+      }).finished.then(() => {
+        this.setState({ isMoving: false, topY: newTop, deltaY: 0 })
+      })
+    }
   }
 
   render() {
