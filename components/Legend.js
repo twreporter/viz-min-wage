@@ -69,32 +69,6 @@ class Legend extends Component {
       })
 
     }
-
-    // let position = width / chartsContent[chartKey].elements.length
-    // if (position > minItemWidth) {
-    //   position = minItemWidth
-    // }
-    // let item = 1
-    // chartsContent[chartKey].elements.map((val) => {
-    //   if (val.type === ELEMENT_TYPE.line) {
-    //
-    //     legendSelection.append('rect')
-    //                    .attr('x', position)
-    //                    .attr('y', -1 * (rectHeight / 2))
-    //                    .attr('width', rectWidth)
-    //                    .attr('height', rectHeight)
-    //                    .attr('rx', 4)
-    //                    .attr('ry', 4)
-    //                    .style('fill', val.color)
-    //     legendSelection.append('text')
-    //                    .attr('x', position + rectWidth + interRectText)
-    //                    .attr('y', rectHeight)
-    //                    .attr('fill', '#303030')
-    //                    .text(val.legendText)
-    //     item = item + 1
-    //     position = (item * position) + rectWidth + interRectText
-    //   }
-    // })
   }
 
   render() {
