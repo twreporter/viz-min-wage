@@ -37,31 +37,64 @@ class Legend extends Component {
                                .attr('id', 'Legend')
                                .attr('transform', `translate(0,${height + legendHeight})`)
 
-    let position = width / chartsContent[chartKey].elements.length
-    if (position > minItemWidth) {
-      position = minItemWidth
-    }
-    let item = 1
+    const legendItems = []
     chartsContent[chartKey].elements.map((val) => {
       if (val.type === ELEMENT_TYPE.line) {
+        legendItems.push({
+          text: val.legendText,
+          color: val.color,
+        })
+      }
+    })
 
+    let position = 0
+    if (legendItems.length !== 0) {
+      position = width / legendItems.length
+
+      legendItems.map((item, idx) => {
+        const startPosition = (idx + 1) * position
         legendSelection.append('rect')
-                       .attr('x', position)
+                       .attr('x', startPosition - (position / 2))
                        .attr('y', -1 * (rectHeight / 2))
                        .attr('width', rectWidth)
                        .attr('height', rectHeight)
                        .attr('rx', 4)
                        .attr('ry', 4)
-                       .style('fill', val.color)
+                       .style('fill', item.color)
         legendSelection.append('text')
-                       .attr('x', position + rectWidth + interRectText)
+                       .attr('x', startPosition - (position / 2) + rectWidth + interRectText)
                        .attr('y', rectHeight)
                        .attr('fill', '#303030')
-                       .text(val.legendText)
-        item = item + 1
-        position = (item * position) + rectWidth + interRectText
-      }
-    })
+                       .text(item.text)
+      })
+
+    }
+
+    // let position = width / chartsContent[chartKey].elements.length
+    // if (position > minItemWidth) {
+    //   position = minItemWidth
+    // }
+    // let item = 1
+    // chartsContent[chartKey].elements.map((val) => {
+    //   if (val.type === ELEMENT_TYPE.line) {
+    //
+    //     legendSelection.append('rect')
+    //                    .attr('x', position)
+    //                    .attr('y', -1 * (rectHeight / 2))
+    //                    .attr('width', rectWidth)
+    //                    .attr('height', rectHeight)
+    //                    .attr('rx', 4)
+    //                    .attr('ry', 4)
+    //                    .style('fill', val.color)
+    //     legendSelection.append('text')
+    //                    .attr('x', position + rectWidth + interRectText)
+    //                    .attr('y', rectHeight)
+    //                    .attr('fill', '#303030')
+    //                    .text(val.legendText)
+    //     item = item + 1
+    //     position = (item * position) + rectWidth + interRectText
+    //   }
+    // })
   }
 
   render() {

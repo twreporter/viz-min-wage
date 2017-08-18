@@ -61,7 +61,9 @@ class Axis extends Component {
     // draw grid
     svg.append('g')
        .attr('id', 'grid')
-       .attr('fill', '#303030')
+       .attr('stroke', '#303030')
+       .attr('opacity', '0.8')
+       .attr('stroke-width', '1')
        .call(
          d3.axisLeft(yScale)
            .ticks(tick)
