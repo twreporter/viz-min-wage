@@ -23,7 +23,12 @@ class D3Graph extends React.Component {
 
     this.state = {
       svg: undefined,
-      margin: { top: 30, right: 20, bottom: 30 + LEGEND_CONFIG.height, left: 50 },
+      margin: {
+        top: 30,
+        right: 35,
+        bottom: 10 + LEGEND_CONFIG.height,
+        left: 50,
+      },
       chartSize: {
         width: 500,
         height: 300,
@@ -44,7 +49,6 @@ class D3Graph extends React.Component {
       .attr('height', height)
       .append('g')
       .attr('id', 'graphGroup')
-      .attr('transform', `translate(${margin.left},${margin.top})`)
   }
 
   componentDidMount() {
@@ -99,9 +103,7 @@ class D3Graph extends React.Component {
     const margin = this.state.margin
 
     if (this.props.isMobile) {
-      margin.top = 20
-      margin.right = 10
-      margin.left = 35
+      margin.top = 50
     }
 
     if ((!container.empty()) && (!group.empty())) {

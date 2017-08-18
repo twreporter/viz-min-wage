@@ -6,6 +6,10 @@ export const chartsContent = {
       xRange: [0, 10],
       yRange: [0, 100],
     },
+    axisUnit: {
+      x: '年份',
+      y: '時薪(元)',
+    },
     tick: 5,
     elements: [
       {
@@ -21,6 +25,10 @@ export const chartsContent = {
     range: {
       xRange: [0, 10],
       yRange: [0, 100],
+    },
+    axisUnit: {
+      x: '年份',
+      y: '月薪(元)',
     },
     tick: 5,
     elements: [
@@ -44,6 +52,10 @@ export const chartsContent = {
     range: {
       xRange: [0, 10],
       yRange: [0, 200],
+    },
+    axisUnit: {
+      x: '年份',
+      y: '年薪(萬元)',
     },
     tick: 5,
     elements: [
