@@ -3,21 +3,21 @@ import { ELEMENT_TYPE } from '../constants/chart-constants'
 export const chartsContent = {
   'intro-1': {
     range: {
-      xRange: [0, 10],
-      yRange: [0, 100],
+      xRange: [1980, 2025],
+      yRange: [3000, 30000],
     },
     axisUnit: {
       x: '年份',
-      y: '時薪(元)',
+      y: '月薪(元)',
     },
     tick: 5,
     elements: [
       {
         type: ELEMENT_TYPE.line,
-        dataName: 'basedata',
+        dataName: 'twMinWage',
         color: '#275623',
-        legendText: '基準',
-        animate: false,
+        legendText: '台灣基本工資變化',
+        animate: true,
       },
     ],
   },
