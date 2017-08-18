@@ -165,6 +165,8 @@ class Cover extends React.Component {
             <ReactCSSTransitionGroup
               transitionName="scale"
               transitionAppear
+              transitionAppearTimeout={1000}
+              transitionEnterTimeout={1000}
               transitionLeaveTimeout={0}
             >
               <div className="scale-appear">
@@ -176,6 +178,8 @@ class Cover extends React.Component {
           <ReactCSSTransitionGroup
             transitionName="element"
             transitionAppear
+            transitionAppearTimeout={2000}
+            transitionEnterTimeout={2000}
             transitionLeaveTimeout={0}
           >
             <div className="element-appear">
