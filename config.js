@@ -13,7 +13,7 @@ module.exports = {
     offset: 0.42,      // 42% of the window height, let the content of next slide appear earlier
   },
   swipeConfig: {
-    threshold: 0.11,    // 11% of the window height
+    threshold: 0.15,    // 15% of the window height
     duration: 400,     // animation duration (ms)
     sDuration: 100,    // shorter animation duration - for the reverse directions (ms)
   },

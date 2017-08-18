@@ -31,7 +31,6 @@ const Wrapper = styled.div`
 
 const ChartContainer = styled.div`
   position: absolute;
-  border: 2px solid #39CCCC;
   top: 0%;
   left: 0%;
   width: 100%;
@@ -46,6 +45,11 @@ const ChartContainer = styled.div`
     min-height: 16rem;
     max-width: ${rem(breakpoints.large.min / 2)};
   `}
+
+  > div {
+    width: 100%;
+    height: 100%;
+  }
 `
 
 class Chart extends React.Component {

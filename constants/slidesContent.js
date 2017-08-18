@@ -2,7 +2,7 @@ import { slideConfig } from '../config'
 
 const coverTitle = '要漲不漲的基本工資'
 const coverSubTitle = '為什麼薪水一直不夠用?'
-const publishedDate = '2017.8.18'
+const publishedDate = '2017.8.21'
 
 const slidesContent = [
   {
