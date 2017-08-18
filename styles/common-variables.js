@@ -3,17 +3,19 @@ import { rem } from './utils'
 
 const fonts = {
   size: {
-    xsmall: '9px',
+    xsmall: '10px',
     small: '12px',
     base: '14px',
     medium: '16px',
     large: '18px',
     xlarge: '20px',
     h1: '28px',
+    subTitle: '20px',
     h2: '18px',
     h2Large: '24px',
+    subTitleLarge: '30px',
     sectionTitle: '24px',
-    h1Desktop: '42px',
+    h1Desktop: '45px',
     largeNum: '70px',
   },
   weight: {
@@ -31,8 +33,12 @@ const colors = {
   primaryColor: '#d87341',  // orange
   textGrey: '#303030',
   textLightGrey: '#8f8f8f',
+  textLighter: '#b5b5b5',
+  textMidGrey: '#4d4d4d',
   grey: '#d6d6d6',
   black: '#393939',
+  bgColor: '#efefef',
+  lightGreen: 'rgba(39, 86, 35, 0.3)',
   white: '#ffffff', // 255
   red: '#fc3434',
   dark: '#08192d',

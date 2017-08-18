@@ -1,6 +1,8 @@
 import { slideConfig } from '../config'
 
-const coverTitle = '22K夠用嗎？基本工資 12 年凍漲的真相'
+const coverTitle = '要漲不漲的基本工資'
+const coverSubTitle = '為什麼薪水一直不夠用?'
+const publishedDate = '2017.8.18'
 
 const slidesContent = [
   {
@@ -48,4 +50,4 @@ const slideEndingKey = 'footer'
 
 const slidesCnt = slidesContent.length + slideConfig.extraCnt
 
-export { slidesContent, slidesCnt, coverTitle, slideBeginingKey, slideEndingKey }
+export { slidesContent, slidesCnt, coverTitle, coverSubTitle, publishedDate, slideBeginingKey, slideEndingKey }
