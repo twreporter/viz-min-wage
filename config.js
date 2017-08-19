@@ -13,9 +13,9 @@ module.exports = {
     offset: 0.60,      // 60% of the window height, let the content of next slide appear earlier
   },
   swipeConfig: {
-    threshold: 0.15,    // 15% of the window height
-    duration: 400,     // animation duration (ms)
-    sDuration: 100,    // shorter animation duration - for the reverse directions (ms)
+    threshold: 0.10,    // 10% of the window height
+    duration: 450,     // animation duration (ms)
+    sDuration: 120,    // shorter animation duration - for the reverse directions (ms)
   },
   debounceTime: {
     window: {

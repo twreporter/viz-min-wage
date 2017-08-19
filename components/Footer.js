@@ -21,7 +21,10 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(to bottom, rgba(239,239,239,0) 0%, rgba(239,239,239,1) 8%, rgba(237,237,237,1) 100%);
+  background: linear-gradient(to bottom, rgba(239,239,239,0) 0%, rgba(239,239,239,1) 10%, rgba(239,239,239,1) 100%);
+  ${screen.largeThanMobile`
+    padding-top: 3%;
+  `}
 `
 
 const OverlayText = styled.div`
