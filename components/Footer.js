@@ -219,7 +219,7 @@ class Footer extends React.Component {
               <Logo />
             </LogoLink>
             <div dangerouslySetInnerHTML={{ __html:
-              `<iframe src="https://www.facebook.com/plugins/like.php?href=${appConfig.url}&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=299222990098378" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>` }}
+              `<iframe src="https://www.facebook.com/plugins/like.php?href=${encodeURI(appConfig.url)}&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=299222990098378" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>` }}
             />
           </OverlayText>
         </Row>
