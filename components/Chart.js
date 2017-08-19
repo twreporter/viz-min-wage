@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import Illustration from './Illustration'
 import D3Graph from './D3Graph'
 import { scaleInAnimation } from '../styles/common-variables'
+import { slideBeginingKey, slideEndingKey } from '../constants/slidesContent'
 
 const _ = {
   get,
@@ -20,12 +21,16 @@ const _ = {
 const Container = styled.div`
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 50%;
   max-width: ${rem(breakpoints.large.min)};
   top: 0;
   left: 0;
   right: 0;
   margin: 0 auto;
+
+  ${screen.largeThanMobile`
+    height: 100%;
+  `}
 `
 
 const ChartContainer = styled.div`
@@ -39,7 +44,7 @@ const ChartOuter = styled.div`
   top: 0%;
   left: 0%;
   width: 100%;
-  height: 50%;
+  height: 100%;
 
   ${screen.largeThanMobile`
     top: 50%;
@@ -72,12 +77,15 @@ const AnimationContainer = styled.div`
 
 class Chart extends React.Component {
   render() {
-    const { sectionKey } = this.props
+    const { isMobile, sectionKey } = this.props
     const isIllustration = _.has(illustrationData, sectionKey)
     const isD3Graph = _.has(chartsContent, sectionKey)
+    const shouldChartShown = !isMobile ||
+        (sectionKey !== slideBeginingKey && sectionKey !== slideEndingKey)
+    const chartDisplay = shouldChartShown ? 'block' : 'none'
 
     return (
-      <Container>
+      <Container style={{ display: chartDisplay }}>
         <ChartContainer>
           <ChartOuter>
             <AnimationContainer style={isIllustration ? scaleInAnimation.show : scaleInAnimation.hide}>
@@ -98,15 +106,18 @@ class Chart extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    isMobile: _.get(state, 'section.isMobile', false),
     sectionKey: _.get(state, 'section.sectionKey', 0),
   }
 }
 
 Chart.defaultProps = {
+  isMobile: false,
   sectionKey: '',
 }
 
 Chart.propTypes = {
+  isMobile: PropTypes.bool,
   sectionKey: PropTypes.string,
 }
 
