@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { data } from './Data'
 import { chartsContent } from '../constants/chartsContent'
-import { STROKE_WIDTH_STR, STROKE_ANIMATION_DURATION } from '../constants/chart-constants'
+import { STROKE_WIDTH_STR } from '../constants/chart-constants'
 
 const _ = {
   get,
@@ -29,7 +29,8 @@ class Line extends Component {
               this.props.data.dataName,
               this.props.data.animate,
               this.props.data.color,
-              this.props.data.delay)
+              this.props.data.delay,
+              this.props.data.animateTime)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,7 +42,8 @@ class Line extends Component {
                 nextProps.data.dataName,
                 nextProps.data.animate,
                 nextProps.data.color,
-                nextProps.data.delay)
+                nextProps.data.delay,
+                nextProps.data.animateTime)
     }
   }
 
@@ -49,7 +51,7 @@ class Line extends Component {
     d3.select(`#${this.props.data.dataName}`).remove()
   }
 
-  draw(svg, line, name, animate, color, delayTime) {
+  draw(svg, line, name, animate, color, delayTime, animateTime) {
     svg.append('path')
        .attr('id', name)
        .attr('d', line(data[name]))
@@ -61,11 +63,11 @@ class Line extends Component {
 
     if (animate) {
       // use setTimeout to avoid getTotalLength from null
-      setTimeout(this.animate, 0, name, delayTime)
+      setTimeout(this.animate, 0, name, delayTime, animateTime)
     }
   }
 
-  animate(name, delayTime) {
+  animate(name, delayTime, animateTime) {
     const animateLine = d3.select(`#${name}`)
     if (animateLine.node() === null) {
       animateLine.attr('visibility', 'visible')
@@ -76,7 +78,7 @@ class Line extends Component {
                .attr('stroke-dashoffset', length)
                .attr('visibility', 'visible')
                .transition()
-               .duration(STROKE_ANIMATION_DURATION)
+               .duration(animateTime)
                .delay(delayTime)
                .ease(d3.easeQuadIn)
                .attr('stroke-dashoffset', 0)

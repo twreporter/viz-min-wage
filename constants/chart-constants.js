@@ -9,7 +9,8 @@ export const ELEMENT_COLOR = {
 }
 
 export const STROKE_WIDTH_STR = '3'
-export const STROKE_ANIMATION_DURATION = 2000
+export const STROKE_ANITIME_SHORT = 1100
+export const STROKE_ANITIME_LONG = 2000
 
 export const MARKER_OPACITY_STR = '0.25'
 export const MARKER_COLOR = '#d87341'

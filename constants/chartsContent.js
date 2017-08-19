@@ -1,4 +1,6 @@
-import { ELEMENT_TYPE, ELEMENT_COLOR, STROKE_ANIMATION_DURATION } from '../constants/chart-constants'
+import { ELEMENT_TYPE, ELEMENT_COLOR,
+         STROKE_ANITIME_SHORT,
+         STROKE_ANITIME_LONG } from '../constants/chart-constants'
 
 export const chartsContent = {
   'intro-1': {
@@ -24,6 +26,7 @@ export const chartsContent = {
         legendText: '台灣基本工資變化',
         animate: true,
         delay: 0,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
@@ -50,6 +53,7 @@ export const chartsContent = {
         legendText: '台灣最低時薪',
         animate: true,
         delay: 0,
+        animateTime: STROKE_ANITIME_SHORT,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -57,7 +61,8 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '韓國最低時薪',
         animate: true,
-        delay: STROKE_ANIMATION_DURATION,
+        delay: STROKE_ANITIME_SHORT,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
@@ -84,6 +89,7 @@ export const chartsContent = {
         legendText: '台灣經濟成長率',
         animate: true,
         delay: 0,
+        animateTime: STROKE_ANITIME_SHORT,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -91,7 +97,8 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '韓國經濟成長率',
         animate: true,
-        delay: STROKE_ANIMATION_DURATION,
+        delay: STROKE_ANITIME_SHORT,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
@@ -118,6 +125,7 @@ export const chartsContent = {
         legendText: '台灣CPI年增率',
         animate: true,
         delay: 0,
+        animateTime: STROKE_ANITIME_SHORT,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -125,7 +133,8 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '韓國CPI年增率',
         animate: true,
-        delay: STROKE_ANIMATION_DURATION,
+        delay: STROKE_ANITIME_SHORT,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
@@ -152,6 +161,7 @@ export const chartsContent = {
         legendText: '台灣基本工資',
         animate: false,
         delay: 0,
+        animateTime: STROKE_ANITIME_SHORT,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -159,7 +169,8 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '勞動部公式',
         animate: true,
-        delay: 0,
+        delay: STROKE_ANITIME_SHORT,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
@@ -186,6 +197,7 @@ export const chartsContent = {
         legendText: '台灣基本工資',
         animate: false,
         delay: 0,
+        animateTime: STROKE_ANITIME_LONG,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -194,6 +206,7 @@ export const chartsContent = {
         legendText: 'ILO公式',
         animate: true,
         delay: 0,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
@@ -220,6 +233,7 @@ export const chartsContent = {
         legendText: '台灣基本工資變化',
         animate: false,
         delay: 0,
+        animateTime: STROKE_ANITIME_LONG,
       },
       {
         type: ELEMENT_TYPE.marker,
@@ -254,6 +268,7 @@ export const chartsContent = {
         legendText: '台灣最低時薪',
         animate: true,
         delay: 0,
+        animateTime: STROKE_ANITIME_SHORT,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -261,7 +276,8 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '韓國最低時薪',
         animate: true,
-        delay: STROKE_ANIMATION_DURATION,
+        delay: STROKE_ANITIME_SHORT,
+        animateTime: STROKE_ANITIME_LONG,
       },
     ],
   },
