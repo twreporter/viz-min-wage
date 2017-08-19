@@ -3,6 +3,7 @@
 import { debounce, get } from 'lodash'
 
 import Chart from '../components/Chart'
+import Loading from '../components/Loading'
 import Content from '../components/Content'
 import ProgressBar from '../components/ProgressBar'
 import Head from 'next/head'
@@ -51,6 +52,7 @@ class Home extends React.Component {
       deltaY: 0,
       isMoving: false,  // if the content is moving automatically after users triggered a swipe
       percent: 0,       // track the reading progress
+      isLoaded: false,
     }
 
     this._swiping = this._swiping.bind(this)
@@ -69,6 +71,7 @@ class Home extends React.Component {
     window.addEventListener('resize', this.debouncedBrowserResize)
     window.addEventListener('scroll', this.debouncedOnScroll)
     this.props.detectWindowSize()
+    this.setState({ isLoaded: true })
   }
 
   componentWillUnmount() {
@@ -157,8 +160,9 @@ class Home extends React.Component {
   }
 
   render() {
-    const { topY, deltaY, percent } = this.state
+    const { topY, deltaY, percent, isLoaded } = this.state
     const { isMobile } = this.props
+    const LoadingIcon = isLoaded ? null : <Loading />
 
     return (
       <Page title="Home Page" linkTo="/other">
@@ -166,6 +170,7 @@ class Home extends React.Component {
           <title>{appConfig.title}</title>
         </Head>
         <OuterCropper>
+          { LoadingIcon }
           { !isMobile ? <Chart /> : null }
           {
             isMobile ? (<Swipeable

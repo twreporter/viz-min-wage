@@ -129,6 +129,7 @@ a {
 .infinite-rotate-left{
   @extend .infinite-rotate;
   transform-origin: 90% 90%;
+  -moz-transform-origin: left bottom;
   animation-name: rotation-left;
 }
 @keyframes rotation-left {
@@ -150,6 +151,7 @@ a {
 .infinite-rotate-right{
   @extend .infinite-rotate;
   transform-origin: 10% 90%;
+  -moz-transform-origin: right bottom;
   animation-name: rotation-right;
 }
 @keyframes rotation-right {

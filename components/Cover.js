@@ -7,7 +7,7 @@ import { colors, fonts } from '../styles/common-variables'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { screen } from '../styles/utils'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { coverTitle, coverSubTitle, publishedDate } from '../constants/slidesContent'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import SalaryTop from '../static/salary-opening-1.svg'
@@ -130,10 +130,27 @@ const S2Wrapper = styled(SvgWrapper)`
     max-width: 25rem;
   `}
 `
+const FadeInDown = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+const FadeAnimationWrapper = styled.div`
+  animation: ${FadeInDown} 1.2s infinite ease;
+`
+
 const ButtonWrapper = styled(SvgWrapper)`
   max-width: 100%;
-  ${screen.largeThanMobile`
-  `}
+  position: absolute;
+  margin-bottom: 2vh;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
 `
 
 class Cover extends React.Component {
@@ -203,10 +220,12 @@ class Cover extends React.Component {
           <S2Wrapper>
             <SalaryBottom />
           </S2Wrapper>
-          <ButtonWrapper>
-            <SalaryButton />
-          </ButtonWrapper>
         </GraphicsWrapper>
+        <ButtonWrapper>
+          <FadeAnimationWrapper>
+            <SalaryButton />
+          </FadeAnimationWrapper>
+        </ButtonWrapper>
       </Container>)
   }
 }
