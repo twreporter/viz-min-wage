@@ -85,19 +85,16 @@ class Home extends React.Component {
 
   // on swiping
   _swiping(e, deltaX, deltaY) {
-    // console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    // console.log("You're Swiping...", e, deltaX, deltaY)
     e.preventDefault()      // disable Chrome's pull to refresh feature
     if (!this.state.isMoving) {
       this.setState({ deltaY })
-      if (Math.abs(deltaY) > this._getSwipeThreshold()) {
-        this._onSwipeNext()
-      }
     }
   }
 
   // on swipe stopped
   _swiped(e, deltaX, deltaY) {
-    // console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
+    // console.log("You Swiped...", e, deltaX, deltaY)
     e.preventDefault()       // disable Chrome's pull to refresh feature
     if (!this.state.isMoving) {
       if (Math.abs(deltaY) > this._getSwipeThreshold()) {
@@ -169,7 +166,7 @@ class Home extends React.Component {
           <title>{appConfig.title}</title>
         </Head>
         <OuterCropper>
-          <Chart />
+          { !isMobile ? <Chart /> : null }
           {
             isMobile ? (<Swipeable
               onSwiping={this._swiping}
@@ -178,6 +175,7 @@ class Home extends React.Component {
             >
               <Wrapper innerRef={ref => this.contentWrapper = ref} style={{ top: topY - deltaY }}>
                 <Content />
+                <Chart />
               </Wrapper>
             </Swipeable>) : <Content />
           }
