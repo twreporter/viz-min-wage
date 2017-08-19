@@ -39,6 +39,7 @@ const colors = {
   grey: '#d6d6d6',
   black: '#393939',
   bgColor: '#efefef',
+  green: '#275623',
   lightGreen: 'rgba(39, 86, 35, 0.3)',
   white: '#ffffff', // 255
   red: '#fc3434',

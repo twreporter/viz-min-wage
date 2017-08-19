@@ -153,7 +153,7 @@ const slidesContent = [
     key: 'ending-tsai-promise',
     title: '## 蔡英文2016政見主張將「最低工資」入法',
     text: '<p>其實我國<u>曾簽署「經濟社會文化國際權利」國際公約</u>，裡面明確規定落實最低工資維護勞工生存權。</p>' +
-      '<p>蔡英文總統也曾在勞工政見提出要訂定〈最低工資法〉，以實現此國際權利公約的規範，' +
+      '<p>蔡英文總統也曾在<a href="https://tsai-tracker.twreporter.org/promise?ID=3" target="_blank">勞工政見提出要訂定〈最低工資法〉</a>，以實現此國際權利公約的規範，' +
       '但<u>勞動部曾承諾去年年底提出草案，但至今卻未研擬完成</u>。</p>',
     sideImg: null,
   },

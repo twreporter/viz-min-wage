@@ -10,7 +10,7 @@ module.exports = {
     extraCnt: 2,       // cover + footer => two additional slides
   },
   scrollConfig: {
-    offset: 0.78,      // 78% of the window height, let the content of next slide appear earlier
+    offset: 0.75,      // 75% of the window height, let the content of next slide appear earlier
   },
   swipeConfig: {
     threshold: 0.10,    // 10% of the window height
