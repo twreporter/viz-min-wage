@@ -90,7 +90,7 @@ export const chartsContent = {
   'intro-4': {
     range: {
       xRange: [1993, 2018],
-      yRange: [12000, 32000],
+      yRange: [10000, 32000],
     },
     axisUnit: {
       x: '年份',
@@ -121,7 +121,7 @@ export const chartsContent = {
   'intro-5': {
     range: {
       xRange: [1995, 2018],
-      yRange: [12000, 32000],
+      yRange: [10000, 32000],
     },
     axisUnit: {
       x: '年份',
