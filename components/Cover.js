@@ -12,6 +12,7 @@ import { coverTitle, coverSubTitle, publishedDate } from '../constants/slidesCon
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import SalaryTop from '../static/salary-opening-1.svg'
 import SalaryBottom from '../static/salary-opening-2.svg'
+import SalaryButton from '../static/salary-button.svg'
 import Logo from '../static/salary-opening-logo.svg'
 
 
@@ -129,6 +130,11 @@ const S2Wrapper = styled(SvgWrapper)`
     max-width: 25rem;
   `}
 `
+const ButtonWrapper = styled(SvgWrapper)`
+  max-width: 100%;
+  ${screen.largeThanMobile`
+  `}
+`
 
 class Cover extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -197,6 +203,9 @@ class Cover extends React.Component {
           <S2Wrapper>
             <SalaryBottom />
           </S2Wrapper>
+          <ButtonWrapper>
+            <SalaryButton />
+          </ButtonWrapper>
         </GraphicsWrapper>
       </Container>)
   }
