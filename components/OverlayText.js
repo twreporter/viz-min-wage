@@ -43,14 +43,22 @@ const OverlayText = styled.div`
       margin: 0.25rem 0;
     `}
     margin: 0.7rem 0;
+
+    a {
+      border-bottom: 2px solid ${colors.green};
+      transition: all 0.5s;
+      &:hover {
+        background: ${colors.lightGreen};
+      }
+    }
   }
 
   u {
     text-decoration: none;
     background-size: -0.05rem 1rem;
     box-shadow:
-      inset 0 -0.675rem ${colors.lightPrimary},
-      inset 0 -0.7rem ${colors.bgColor};
+      inset 0 -0.725rem ${colors.lightPrimary},
+      inset 0 -0.75rem ${colors.bgColor};
     display: inline;
   }
 `
