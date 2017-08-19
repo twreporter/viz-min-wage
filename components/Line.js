@@ -28,7 +28,8 @@ class Line extends Component {
               this.props.line,
               this.props.data.dataName,
               this.props.data.animate,
-              this.props.data.color)
+              this.props.data.color,
+              this.props.data.delay)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,7 +40,8 @@ class Line extends Component {
                 nextProps.line,
                 nextProps.data.dataName,
                 nextProps.data.animate,
-                nextProps.data.color)
+                nextProps.data.color,
+                nextProps.data.delay)
     }
   }
 
@@ -47,7 +49,7 @@ class Line extends Component {
     d3.select(`#${this.props.data.dataName}`).remove()
   }
 
-  draw(svg, line, name, animate, color) {
+  draw(svg, line, name, animate, color, delayTime) {
     svg.append('path')
        .attr('id', name)
        .attr('d', line(data[name]))
@@ -59,11 +61,11 @@ class Line extends Component {
 
     if (animate) {
       // use setTimeout to avoid getTotalLength from null
-      setTimeout(this.animate, 0, name)
+      setTimeout(this.animate, 0, name, delayTime)
     }
   }
 
-  animate(name) {
+  animate(name, delayTime) {
     const animateLine = d3.select(`#${name}`)
     if (animateLine.node() === null) {
       animateLine.attr('visibility', 'visible')
@@ -75,6 +77,7 @@ class Line extends Component {
                .attr('visibility', 'visible')
                .transition()
                .duration(STROKE_ANIMATION_DURATION)
+               .delay(delayTime)
                .ease(d3.easeQuadIn)
                .attr('stroke-dashoffset', 0)
   }

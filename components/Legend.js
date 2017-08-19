@@ -30,7 +30,7 @@ class Legend extends Component {
 
   drawLegend(painting, chartKey) {
     const { svg, height, width } = painting
-    const { rectWidth, rectHeight, interRectText, startOffset } = LEGEND_CONFIG
+    const { rectWidth, rectHeight, interRectText } = LEGEND_CONFIG
     const legendHeight = LEGEND_CONFIG.height
 
     const legendSelection = svg.append('g')
@@ -47,14 +47,14 @@ class Legend extends Component {
       }
     })
 
-    let position = 0
     if (legendItems.length !== 0) {
-      position = width / legendItems.length
-
       legendItems.map((item, idx) => {
-        const startPosition = (idx + 1) * position + startOffset
+        const boxLength = width / legendItems.length
+        const rectStartPos = idx * boxLength
+        const textStartPos = rectStartPos + rectWidth + interRectText
+
         legendSelection.append('rect')
-                       .attr('x', startPosition - (position / 2))
+                       .attr('x', rectStartPos)
                        .attr('y', -1 * (rectHeight / 2))
                        .attr('width', rectWidth)
                        .attr('height', rectHeight)
@@ -62,9 +62,10 @@ class Legend extends Component {
                        .attr('ry', 4)
                        .style('fill', item.color)
         legendSelection.append('text')
-                       .attr('x', startPosition - (position / 2) + rectWidth + interRectText)
+                       .attr('x', textStartPos)
                        .attr('y', rectHeight)
                        .attr('fill', '#303030')
+                       .attr('font-size', '0.8rem')
                        .text(item.text)
       })
     }

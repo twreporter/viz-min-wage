@@ -1,4 +1,4 @@
-import { ELEMENT_TYPE, ELEMENT_COLOR } from '../constants/chart-constants'
+import { ELEMENT_TYPE, ELEMENT_COLOR, STROKE_ANIMATION_DURATION } from '../constants/chart-constants'
 
 export const chartsContent = {
   'intro-1': {
@@ -12,6 +12,7 @@ export const chartsContent = {
     },
     axisSetting: {
       gridTick: 5,
+      axisXTick: 6,
       axisYTick: 5,
       skewWheMobile: false,
     },
@@ -22,6 +23,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.green,
         legendText: '台灣基本工資變化',
         animate: true,
+        delay: 0,
       },
     ],
   },
@@ -36,6 +38,7 @@ export const chartsContent = {
     },
     axisSetting: {
       gridTick: 5,
+      axisXTick: 6,
       axisYTick: 5,
       skewWheMobile: true,
     },
@@ -46,6 +49,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.green,
         legendText: '台灣最低時薪',
         animate: true,
+        delay: 0,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -53,13 +57,14 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '韓國最低時薪',
         animate: true,
+        delay: STROKE_ANIMATION_DURATION,
       },
     ],
   },
   'intro-3': {
     range: {
       xRange: [1990, 2018],
-      yRange: [-5, 15],
+      yRange: [-5, 13],
     },
     axisUnit: {
       x: '年份',
@@ -67,6 +72,7 @@ export const chartsContent = {
     },
     axisSetting: {
       gridTick: 5,
+      axisXTick: 6,
       axisYTick: 5,
       skewWheMobile: true,
     },
@@ -77,6 +83,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.green,
         legendText: '台灣經濟成長率',
         animate: true,
+        delay: 0,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -84,6 +91,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '韓國經濟成長率',
         animate: true,
+        delay: STROKE_ANIMATION_DURATION,
       },
     ],
   },
@@ -98,6 +106,7 @@ export const chartsContent = {
     },
     axisSetting: {
       gridTick: 5,
+      axisXTick: 6,
       axisYTick: 5,
       skewWheMobile: true,
     },
@@ -108,6 +117,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.green,
         legendText: '台灣基本工資',
         animate: false,
+        delay: 0,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -115,6 +125,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: '勞動部公式',
         animate: true,
+        delay: 0,
       },
     ],
   },
@@ -129,8 +140,9 @@ export const chartsContent = {
     },
     axisSetting: {
       gridTick: 5,
+      axisXTick: 6,
       axisYTick: 5,
-      skewWheMobile: false,
+      skewWheMobile: true,
     },
     elements: [
       {
@@ -139,6 +151,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.green,
         legendText: '台灣基本工資',
         animate: false,
+        delay: 0,
       },
       {
         type: ELEMENT_TYPE.line,
@@ -146,12 +159,13 @@ export const chartsContent = {
         color: ELEMENT_COLOR.orange,
         legendText: 'ILO公式',
         animate: true,
+        delay: 0,
       },
     ],
   },
   'intro-6': {
     range: {
-      xRange: [1994, 2020],
+      xRange: [1994, 2022],
       yRange: [13000, 25000],
     },
     axisUnit: {
@@ -160,6 +174,7 @@ export const chartsContent = {
     },
     axisSetting: {
       gridTick: 5,
+      axisXTick: 6,
       axisYTick: 5,
       skewWheMobile: true,
     },
@@ -170,6 +185,7 @@ export const chartsContent = {
         color: ELEMENT_COLOR.green,
         legendText: '台灣基本工資變化',
         animate: false,
+        delay: 0,
       },
       {
         type: ELEMENT_TYPE.marker,

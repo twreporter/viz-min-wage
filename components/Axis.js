@@ -81,7 +81,10 @@ class Axis extends Component {
        .attr('transform', `translate(0,${height})`)
        .attr('fill', '#303030')
        .attr('opacity', '0.8')
-       .call(d3.axisBottom(xScale))
+       .call(
+         d3.axisBottom(xScale)
+           .tickFormat(d3.format('d'))
+       )
     svg.append('g')
        .attr('id', 'AxisY')
        .attr('fill', '#303030')
@@ -104,7 +107,6 @@ class Axis extends Component {
         const sel = d3.select(this)
         if (idx === lastX) {
           sel.text(axisUnit.x)
-             .attr('transform', 'translate(-5,0)')
         }else{
           if (that.props.isMobile && axisSetting.skewWheMobile) {
             sel.attr('dx', '-0.7rem')
@@ -123,7 +125,7 @@ class Axis extends Component {
             .append('text')
             .text(axisUnit.y)
             .attr('fill', 'black')
-            .attr('transform', 'translate(5,-15)')
+            .attr('transform', 'translate(0,-15)')
         }
       })
   }
