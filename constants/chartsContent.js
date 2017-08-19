@@ -3,14 +3,18 @@ import { ELEMENT_TYPE } from '../constants/chart-constants'
 export const chartsContent = {
   'intro-1': {
     range: {
-      xRange: [1980, 2025],
-      yRange: [1800, 25000],
+      xRange: [1978, 2020],
+      yRange: [3000, 25000],
     },
     axisUnit: {
       x: '年份',
       y: '月薪(元)',
     },
-    tick: 6,
+    axisSetting: {
+      gridTick: 5,
+      axisYTick: 5,
+      skewWheMobile: false,
+    },
     elements: [
       {
         type: ELEMENT_TYPE.line,
@@ -30,7 +34,11 @@ export const chartsContent = {
       x: '年份',
       y: '月薪(元)',
     },
-    tick: 5,
+    axisSetting: {
+      gridTick: 5,
+      axisYTick: 5,
+      skewWheMobile: false,
+    },
     elements: [
       {
         type: ELEMENT_TYPE.line,
@@ -57,7 +65,11 @@ export const chartsContent = {
       x: '年份',
       y: '年薪(萬元)',
     },
-    tick: 5,
+    axisSetting: {
+      gridTick: 5,
+      axisYTick: 5,
+      skewWheMobile: false,
+    },
     elements: [
       {
         type: ELEMENT_TYPE.line,

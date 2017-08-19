@@ -30,9 +30,9 @@ class Legend extends Component {
 
   drawLegend(painting, chartKey) {
     const { svg, height, width } = painting
-    const { rectWidth, rectHeight, interRectText, minItemWidth } = LEGEND_CONFIG
+    const { rectWidth, rectHeight, interRectText, interLegendAxis } = LEGEND_CONFIG
     const legendHeight = LEGEND_CONFIG.height
-
+    
     const legendSelection = svg.append('g')
                                .attr('id', 'Legend')
                                .attr('transform', `translate(0,${height + legendHeight})`)

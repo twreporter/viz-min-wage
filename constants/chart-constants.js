@@ -15,5 +15,4 @@ export const LEGEND_CONFIG = {
   rectWidth: 20,
   rectHeight: 5,
   interRectText: 8,
-  minItemWidth: 80,
 }
