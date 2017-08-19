@@ -36,7 +36,8 @@ const Grid = styled.div`
   }
 
   svg {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     padding: 1rem;
 
     ${screen.mobile`
@@ -54,7 +55,9 @@ class InnerSlide extends React.Component {
     return (
       <Row>
         <OverlayText>
-          <ReactMarkdown source={title} />
+          {/* Title */}
+          {title ? <ReactMarkdown source={title} /> : null}
+          {/* Content */}
           {!sideImg ? TextBox :
           <Container>
             <Grid>

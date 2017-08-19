@@ -44,5 +44,14 @@ const OverlayText = styled.div`
     `}
     margin: 0.7rem 0;
   }
+
+  u {
+    text-decoration: none;
+    background-size: -0.05rem 1rem;
+    box-shadow:
+      inset 0 -0.675rem ${colors.lightPrimary},
+      inset 0 -0.7rem ${colors.bgColor};
+    display: inline;
+  }
 `
 export default OverlayText
