@@ -58,6 +58,7 @@ class Marker extends Component {
        .attr('opacity', MARKER_OPACITY_STR)
        .transition()
        .duration(MARKER_ANIMATION_DURATION)
+       .ease(d3.easeQuadIn)
        .attr('width', xScale(pos.end) - xScale(pos.start))
   }
 

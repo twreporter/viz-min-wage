@@ -6,6 +6,7 @@ import { rem, screen } from '../styles/utils'
 import { connect } from 'react-redux'
 import { get, has } from 'lodash'
 import illustrationData from '../constants/illustrationData'
+import { chartsContent } from '../constants/chartsContent'
 import styled from 'styled-components'
 import Illustration from './Illustration'
 import D3Graph from './D3Graph'
@@ -67,6 +68,7 @@ class Chart extends React.Component {
   render() {
     const { sectionKey } = this.props
     const isIllustration = _.has(illustrationData, sectionKey)
+    const isD3Graph = _.has(chartsContent, sectionKey)
 
     return (
       <Container>
@@ -77,9 +79,9 @@ class Chart extends React.Component {
             </AnimationContainer>
           </ChartOuter>
           <ChartOuter innerRef={comp => this.containerRef = comp}>
-            <div>
+            <AnimationContainer style={isD3Graph ? scaleInAnimation.show : scaleInAnimation.hide}>
               <D3Graph containerRef={this.containerRef} />
-            </div>
+            </AnimationContainer>
           </ChartOuter>
         </ChartContainer>
       </Container>

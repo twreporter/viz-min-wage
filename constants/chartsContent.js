@@ -4,13 +4,13 @@ export const chartsContent = {
   'intro-1': {
     range: {
       xRange: [1980, 2025],
-      yRange: [3000, 30000],
+      yRange: [1800, 25000],
     },
     axisUnit: {
       x: '年份',
       y: '月薪(元)',
     },
-    tick: 5,
+    tick: 6,
     elements: [
       {
         type: ELEMENT_TYPE.line,
