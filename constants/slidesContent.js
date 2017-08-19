@@ -38,7 +38,7 @@ const slidesContent = [
   {
     key: 'beginning-economy',
     title: null,
-    text: '<p>不過，另一派看法則認為基本工資應該是「經濟成長果實的分享」，也就是一旦有經濟成長，' +
+    text: '<p>另一派看法則認為基本工資應該是「經濟成長果實的分享」，也就是一旦有經濟成長，' +
     '勞資雙方各有一半的功勞，因此基本工資的調整<u>應以「勞工造就多少經濟成長」為主要依據。</u></p>',
     sideImg: null,
   },
@@ -154,10 +154,13 @@ const slidesContent = [
     title: '## 蔡英文2016政見主張將「最低工資」入法',
     text: '<p>其實我國<u>曾簽署「經濟社會文化國際權利」國際公約</u>，裡面明確規定落實最低工資維護勞工生存權。</p>' +
       '<p>蔡英文總統也曾在<a href="https://tsai-tracker.twreporter.org/promise?ID=3" target="_blank">勞工政見提出要訂定〈最低工資法〉</a>，以實現此國際權利公約的規範，' +
-      '但<u>勞動部曾承諾去年年底提出草案，但至今卻未研擬完成</u>。</p>',
+      '但<u>勞動部曾承諾去年年底提出草案，但至今尚未提出草案</u>。</p>',
     sideImg: null,
   },
 ]
+
+const footerText = '目前，雖有時代力量黨團及部分國民黨立委提出草案版本，但兩版本目前各有爭議，最低工資法的制定，仍須各界的關心' +
+                      '（<a href="https://tsai-tracker.twreporter.org/promise?ID=3" target="_blank">蔡英文〈最低工資法〉進度追蹤</a>）'
 
 const authorsText = '<p>數據、文字整理 ｜ <span itemprop="author">葉瑜娟</span>、<span itemprop="author">王珣沛</span></p>' +
                     '<p>設計 ｜ <span itemprop="author">黃禹禛</span></p>' +
@@ -170,4 +173,4 @@ const slideEndingKey = 'footer'
 
 const slidesCnt = slidesContent.length + slideConfig.extraCnt
 
-export { slidesContent, slidesCnt, coverTitle, coverSubTitle, publishedDate, slideBeginingKey, slideEndingKey, authorsText }
+export { slidesContent, slidesCnt, coverTitle, coverSubTitle, publishedDate, slideBeginingKey, slideEndingKey, authorsText, footerText }

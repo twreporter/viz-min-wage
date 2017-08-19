@@ -8,8 +8,9 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { screen, truncateText } from '../styles/utils'
 import styled from 'styled-components'
-import { authorsText } from '../constants/slidesContent'
+import { authorsText, footerText } from '../constants/slidesContent'
 import Logo from '../static/footer-logo.svg'
+import { appConfig } from '../config'
 
 const _ = {
   get,
@@ -23,8 +24,20 @@ const Container = styled.div`
   left: 0;
   background: linear-gradient(to bottom, rgba(239,239,239,0) 0%, rgba(239,239,239,1) 10%, rgba(239,239,239,1) 100%);
   ${screen.largeThanMobile`
-    padding-top: 3%;
+    padding-top: 1.5%;
   `}
+`
+
+const EndText = styled.p`
+  text-align: left;
+  padding: 0.8rem 0;
+  a {
+    border-bottom: 2px solid ${colors.green};
+    transition: all 0.5s;
+    &:hover {
+      background: ${colors.lightGreen};
+    }
+  }
 `
 
 const OverlayText = styled.div`
@@ -44,7 +57,7 @@ const OverlayText = styled.div`
   `}
 
   p {
-    margin: 0.3rem;
+    margin: 0.2rem;
   }
 `
 
@@ -57,6 +70,7 @@ const LinkBox = styled.a`
   transition: all 0.5s ease;
   cursor: pointer;
   display: block;
+  text-align: left;
 
   &:hover {
     transform: translateY(-0.2rem);
@@ -65,6 +79,7 @@ const LinkBox = styled.a`
 
 const LogoLink = styled(LinkBox)`
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
   display: inline-block;
   padding: 0.8rem;
 `
@@ -180,17 +195,17 @@ const TextContainer = styled.div`
 
 class Footer extends React.Component {
   render() {
-    const { title } = this.props
     return (
       <Container innerRef={ref => this.footerWrapper = ref}>
         <Row>
           <OverlayText>
-            <LinkBox href="https://www.twreporter.org/a/labor-inspection" target="_blank" rel="noreferrer noopener">
+            <EndText dangerouslySetInnerHTML={{ __html: footerText }} />
+            <LinkBox href="https://www.twreporter.org/a/review-tsai-labor-policy" target="_blank" rel="noreferrer noopener">
               <ArticleContainer>
-                <ImgContainer><Img src={'https://www.twreporter.org/images/20170429144507-7a77434a2141b4ab3d72772981c03357-mobile.jpg'} /></ImgContainer>
+                <ImgContainer><Img src={'https://www.twreporter.org/images/20170519135127-8477fe439b38b48305dee77b1a769886-mobile.jpg'} /></ImgContainer>
                 <TextContainer>
-                  <Title>達成率100%的勞動檢查，為何得不到勞工信任？</Title>
-                  <Desc className="show-for-medium">政策推出很重要，但能否落實卻得仰賴第一線徹底的勞動檢查才可能實現。但，台灣的勞檢準備好了嗎？</Desc>
+                  <Title>蔡英文執政一年　勞動政見落實多少？</Title>
+                  <Desc className="show-for-medium">根據《報導者》最新更新的「蔡英文勞動政策追蹤平台」，僅有一項政見完全落實。到底，政府的勞動政見落實了多少？為什麼政府說法跟民間感受落差這麼大？</Desc>
                 </TextContainer>
               </ArticleContainer>
             </LinkBox>
@@ -203,6 +218,9 @@ class Footer extends React.Component {
             <LogoLink href="https://twreporter.org/" target="_blank" rel="noreferrer noopener">
               <Logo />
             </LogoLink>
+            <div dangerouslySetInnerHTML={{ __html:
+              `<iframe src="https://www.facebook.com/plugins/like.php?href=${appConfig.url}&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=299222990098378" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>` }}
+            />
           </OverlayText>
         </Row>
       </Container>)

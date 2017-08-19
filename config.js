@@ -1,6 +1,6 @@
 module.exports = {
   appConfig: {
-    url: 'http://testtest.twreporter.org:3000',
+    url: 'http://twreporter.org/a/min-wage-draft',
     domain: 'twreporter.org',
     expirationDays: 7,
     title: '專案名稱 - 報導者 The Reporter',
