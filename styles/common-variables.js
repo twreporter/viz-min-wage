@@ -31,6 +31,7 @@ const fonts = {
 
 const colors = {
   primaryColor: '#d87341',  // orange
+  lightPrimary: 'rgba(216, 115, 65, 0.25)',
   textGrey: '#303030',
   textLightGrey: '#8f8f8f',
   textLighter: '#b5b5b5',
@@ -85,7 +86,7 @@ const scaleInAnimation = {
     opacity: 0,
     transform: 'scale(0.8)',
   },
-  transition: 'all 0.5s ease-in-out',
+  transition: 'all 0.45s ease-in-out',
 }
 
 export {
