@@ -64,11 +64,11 @@ export const chartsContent = {
   'intro-3': {
     range: {
       xRange: [1990, 2018],
-      yRange: [-5, 13],
+      yRange: [-5, 15],
     },
     axisUnit: {
       x: '年份',
-      y: '經濟成長率',
+      y: 'GDP(%)',
     },
     axisSetting: {
       gridTick: 5,
@@ -96,6 +96,40 @@ export const chartsContent = {
     ],
   },
   'intro-4': {
+    range: {
+      xRange: [1990, 2018],
+      yRange: [-5, 13],
+    },
+    axisUnit: {
+      x: '年份',
+      y: 'CPI年增率',
+    },
+    axisSetting: {
+      gridTick: 5,
+      axisXTick: 6,
+      axisYTick: 5,
+      skewWheMobile: true,
+    },
+    elements: [
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'twCPI',
+        color: ELEMENT_COLOR.green,
+        legendText: '台灣CPI年增率',
+        animate: true,
+        delay: 0,
+      },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'krCPI',
+        color: ELEMENT_COLOR.orange,
+        legendText: '韓國CPI年增率',
+        animate: true,
+        delay: STROKE_ANIMATION_DURATION,
+      },
+    ],
+  },
+  'intro-5': {
     range: {
       xRange: [1993, 2018],
       yRange: [10000, 32000],
@@ -129,7 +163,7 @@ export const chartsContent = {
       },
     ],
   },
-  'intro-5': {
+  'intro-6': {
     range: {
       xRange: [1995, 2018],
       yRange: [10000, 32000],
@@ -163,7 +197,7 @@ export const chartsContent = {
       },
     ],
   },
-  'intro-6': {
+  'intro-7': {
     range: {
       xRange: [1994, 2022],
       yRange: [13000, 25000],
@@ -194,6 +228,40 @@ export const chartsContent = {
       {
         type: ELEMENT_TYPE.marker,
         pos: { start: 2007, end: 2010 },
+      },
+    ],
+  },
+  'intro-8': {
+    range: {
+      xRange: [1992, 2020],
+      yRange: [20, 220],
+    },
+    axisUnit: {
+      x: '年份',
+      y: '時薪(元)',
+    },
+    axisSetting: {
+      gridTick: 5,
+      axisXTick: 6,
+      axisYTick: 5,
+      skewWheMobile: true,
+    },
+    elements: [
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'twMinWageHourly',
+        color: ELEMENT_COLOR.green,
+        legendText: '台灣最低時薪',
+        animate: true,
+        delay: 0,
+      },
+      {
+        type: ELEMENT_TYPE.line,
+        dataName: 'krMinWageHourly',
+        color: ELEMENT_COLOR.orange,
+        legendText: '韓國最低時薪',
+        animate: true,
+        delay: STROKE_ANIMATION_DURATION,
       },
     ],
   },
