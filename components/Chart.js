@@ -71,7 +71,7 @@ const AnimationContainer = styled.div`
   opacity: ${scaleInAnimation.hide.opacity};
 
   ${screen.mobile`
-    background: linear-gradient(to bottom, rgba(239,239,239,1) 0%, rgba(239,239,239,0.88) 80%, rgba(239,239,239,0) 100%);
+    background: linear-gradient(to bottom, rgba(239,239,239,1) 0%, rgba(239,239,239,0.86) 92%, rgba(239,239,239,0) 100%);
   `}
 `
 

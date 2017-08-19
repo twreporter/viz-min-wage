@@ -5,18 +5,19 @@ import { screen } from '../styles/utils'
 const OverlayText = styled.div`
   position: absolute;
   left: 50%;
-  padding: 3rem 1.9rem 2rem 2.1rem;
+  padding: 3rem 5.2% 10% 2.5%;
   top: 5vh;
   font-size: ${fonts.size.large};
   color: ${colors.textGrey};
 
   ${screen.mobile`
     left: 0;
-    padding: 0.5rem 1rem 2rem 1rem;
+    padding: 0.6rem 1rem 2rem 1rem;
     top: 50%;
     height: 50%;
-    line-height: 1.56;
+    line-height: 1.6;
     font-size: ${fonts.size.medium};
+    letter-spacing: 0.25px;
   `}
 
   h2 {
@@ -30,7 +31,11 @@ const OverlayText = styled.div`
   }
 
   h2 + p {
-    margin-top: 0.3rem;
+    margin-top: 1.2rem;
+
+    ${screen.mobile`
+      margin-top: 0.28rem;
+    `}
   }
 
   h4 {
@@ -42,7 +47,9 @@ const OverlayText = styled.div`
     ${screen.mobile`
       margin: 0.25rem 0;
     `}
-    margin: 0.7rem 0;
+
+    margin: 1.2rem 0;
+    font-weight: ${fonts.weight.normal};
 
     a {
       border-bottom: 2px solid ${colors.green};
@@ -60,6 +67,16 @@ const OverlayText = styled.div`
       inset 0 -0.725rem ${colors.lightPrimary},
       inset 0 -0.75rem ${colors.bgColor};
     display: inline;
+  }
+
+  small {
+    color: ${colors.textLightGrey};
+    padding-top: 4.5rem;
+
+    ${screen.mobile`
+      padding-top: 2.5rem;
+      line-height: 1.3;
+    `}
   }
 `
 export default OverlayText
