@@ -81,7 +81,10 @@ class Axis extends Component {
        .attr('id', 'AxisY')
        .attr('fill', '#303030')
        .attr('opacity', '0.8')
-       .call(d3.axisLeft(yScale))
+       .call(
+         d3.axisLeft(yScale)
+           .ticks(tick)
+       )
 
     d3.selectAll('.domain').remove()
     d3.selectAll('#AxisX .tick line').remove()

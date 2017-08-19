@@ -75,7 +75,7 @@ class Line extends Component {
                .attr('visibility', 'visible')
                .transition()
                .duration(STROKE_ANIMATION_DURATION)
-               .ease(d3.easeLinear)
+               .ease(d3.easeQuadIn)
                .attr('stroke-dashoffset', 0)
   }
 
