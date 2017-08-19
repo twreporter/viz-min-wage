@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { get } from 'lodash'
 import * as d3 from 'd3'
 
 import { ELEMENT_TYPE } from '../constants/chart-constants'
@@ -7,6 +9,10 @@ import { chartsContent } from '../constants/chartsContent'
 import Line from './Line'
 import Marker from './Marker'
 import Legend from './Legend'
+
+const _ = {
+  get,
+}
 
 class Axis extends Component {
   constructor(props) {
@@ -42,8 +48,7 @@ class Axis extends Component {
 
   drawAxis(painting, chartKey) {
     const { xRange, yRange } = chartsContent[chartKey].range
-    const tick = chartsContent[chartKey].tick
-    const { axisUnit } = chartsContent[chartKey]
+    const { axisUnit, axisSetting } = chartsContent[chartKey]
     const { svg, width, height } = painting
 
     const xScale = d3.scaleLinear()
@@ -66,7 +71,7 @@ class Axis extends Component {
        .attr('stroke-width', '1')
        .call(
          d3.axisLeft(yScale)
-           .ticks(tick)
+           .ticks(axisSetting.gridTick)
            .tickSize(-width)
            .tickFormat('')
       )
@@ -83,21 +88,29 @@ class Axis extends Component {
        .attr('opacity', '0.8')
        .call(
          d3.axisLeft(yScale)
-           .ticks(tick)
+           .ticks(axisSetting.axisYTick)
        )
 
     d3.selectAll('.domain').remove()
     d3.selectAll('#AxisX .tick line').remove()
     d3.selectAll('#AxisY .tick line').remove()
 
+    // add axis unit in last tick position
     const axisXLabels = d3.selectAll('#AxisX .tick text')
     const lastX = axisXLabels.size() - 1
+    const that = this
     d3.selectAll('#AxisX .tick text')
       .each(function (data, idx) {
+        const sel = d3.select(this)
         if (idx === lastX) {
-          d3.select(this)
-            .text(axisUnit.x)
-            .attr('transform', 'translate(-5,0)')
+          sel.text(axisUnit.x)
+             .attr('transform', 'translate(-5,0)')
+        }else{
+          if (that.props.isMobile && axisSetting.skewWheMobile) {
+            sel.attr('dx', '-0.7rem')
+               .attr("transform", "rotate(-33)")
+
+          }
         }
       })
 
@@ -110,7 +123,7 @@ class Axis extends Component {
             .append('text')
             .text(axisUnit.y)
             .attr('fill', 'black')
-            .attr('transform', 'translate(0,-15)')
+            .attr('transform', 'translate(5,-15)')
         }
       })
   }
@@ -173,4 +186,10 @@ Axis.defaultProps = {
   chartKey: '',
 }
 
-export default Axis
+function mapStateToProps(state) {
+  return ({
+    isMobile: _.get(state, 'section.isMobile', true),
+  })
+}
+
+export default connect(mapStateToProps)(Axis)
