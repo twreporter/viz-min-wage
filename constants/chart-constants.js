@@ -3,6 +3,11 @@ export const ELEMENT_TYPE = {
   marker: 'MARKER',
 }
 
+export const ELEMENT_COLOR = {
+  orange: '#d87341',
+  green: '#275623',
+}
+
 export const STROKE_WIDTH_STR = '3'
 export const STROKE_ANIMATION_DURATION = 2000
 
@@ -15,4 +20,5 @@ export const LEGEND_CONFIG = {
   rectWidth: 20,
   rectHeight: 5,
   interRectText: 8,
+  startOffset: -15,
 }

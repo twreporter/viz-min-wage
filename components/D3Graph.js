@@ -85,7 +85,7 @@ class D3Graph extends React.Component {
   }
 
   getContainerSize(containerRef) {
-    if (containerRef !== undefined) {
+    if ((containerRef !== undefined) && (containerRef !== null)) {
       const size = {
         width: containerRef.clientWidth,
         height: containerRef.clientHeight,

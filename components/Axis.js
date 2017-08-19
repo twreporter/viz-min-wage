@@ -123,7 +123,7 @@ class Axis extends Component {
             .append('text')
             .text(axisUnit.y)
             .attr('fill', 'black')
-            .attr('transform', 'translate(0,-15)')
+            .attr('transform', 'translate(5,-15)')
         }
       })
   }

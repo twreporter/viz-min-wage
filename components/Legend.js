@@ -30,9 +30,9 @@ class Legend extends Component {
 
   drawLegend(painting, chartKey) {
     const { svg, height, width } = painting
-    const { rectWidth, rectHeight, interRectText, interLegendAxis } = LEGEND_CONFIG
+    const { rectWidth, rectHeight, interRectText, startOffset } = LEGEND_CONFIG
     const legendHeight = LEGEND_CONFIG.height
-    
+
     const legendSelection = svg.append('g')
                                .attr('id', 'Legend')
                                .attr('transform', `translate(0,${height + legendHeight})`)
@@ -52,7 +52,7 @@ class Legend extends Component {
       position = width / legendItems.length
 
       legendItems.map((item, idx) => {
-        const startPosition = (idx + 1) * position
+        const startPosition = (idx + 1) * position + startOffset
         legendSelection.append('rect')
                        .attr('x', startPosition - (position / 2))
                        .attr('y', -1 * (rectHeight / 2))
@@ -67,7 +67,6 @@ class Legend extends Component {
                        .attr('fill', '#303030')
                        .text(item.text)
       })
-
     }
   }
 
