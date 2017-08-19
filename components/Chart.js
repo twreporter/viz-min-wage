@@ -58,9 +58,15 @@ const ChartOuter = styled.div`
 `
 
 const AnimationContainer = styled.div`
+  width: 100%;
+  height: 100%;
   transition: ${scaleInAnimation.transition};
   transform: ${scaleInAnimation.hide.transform};
   opacity: ${scaleInAnimation.hide.opacity};
+
+  ${screen.mobile`
+    background: linear-gradient(to bottom, rgba(239,239,239,1) 0%, rgba(239,239,239,0.88) 80%, rgba(239,239,239,0) 100%);
+  `}
 `
 
 class Chart extends React.Component {

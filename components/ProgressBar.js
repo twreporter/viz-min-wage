@@ -5,7 +5,6 @@ import { colors } from '../styles/common-variables'
 const ProgressContainer = styled.div`
   width: 100%;
   height: 0.45rem;
-  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.35);
   background: ${colors.grey};
   position: fixed;
   top: 0;
