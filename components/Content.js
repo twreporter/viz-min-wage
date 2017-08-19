@@ -18,7 +18,7 @@ class Content extends React.Component {
   render() {
     const MainSlides = slidesContent.map((slide, index) =>
       (<Slide key={slide.key} index={index + 1}>
-        <InnerSlide text={slide.text} />
+        <InnerSlide content={slide} />
       </Slide>),
     )
 

@@ -16,13 +16,55 @@ const _ = {
   get,
 }
 
+const Container = styled.div`
+  width: 100%;
+`
+
+const Grid = styled.div`
+  width: 50%;
+  padding: 0 0.1rem;
+  display: inline-block;
+  vertical-align:top;
+  margin-top: 0.5rem;
+
+  p {
+    margin-top: 0.3rem;
+
+    ${screen.largeThanMobile`
+      margin: 1rem 0.5rem;
+    `}
+  }
+
+  svg {
+    width: 100%;
+    padding: 1rem;
+
+    ${screen.mobile`
+      padding: 0.5rem;
+    `}
+  }
+`
+
 class InnerSlide extends React.Component {
   render() {
-    const { text } = this.props
+    const { content } = this.props
+    const { title, text, sideImg } = content
+    const TextBox = <ReactMarkdown source={text} />
+
     return (
       <Row>
         <OverlayText>
-          <ReactMarkdown source={text} />
+          <ReactMarkdown source={title} />
+          {!sideImg ? TextBox :
+          <Container>
+            <Grid>
+              {sideImg}
+            </Grid>
+            <Grid>
+              {TextBox}
+            </Grid>
+          </Container>
+          }
         </OverlayText>
       </Row>
     )
@@ -30,12 +72,12 @@ class InnerSlide extends React.Component {
 }
 
 InnerSlide.defaultProps = {
-  text: '',
+  content: '',
   sectionIndex: 0,
 }
 
 InnerSlide.propTypes = {
-  text: PropTypes.string,
+  content: PropTypes.object,
   sectionIndex: PropTypes.number,
 }
 
