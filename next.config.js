@@ -1,6 +1,9 @@
 /*eslint-disable */
 const path = require('path')
 const glob = require('glob')
+const cfg = require('./config')
+
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   webpack: (config, { dev }) => {
@@ -60,8 +63,15 @@ module.exports = {
       delete config.resolve.alias['react-dom']
     }
 
+    // add an asset prefix for exporting the assets
+    if (isProd) {
+      config.output.publicPath = `${cfg.appConfig.assetPrefix}${config.output.publicPath}`; // affects 'chunks'
+    }
+
     return config
   },
+
+  assetPrefix: isProd ? cfg.appConfig.assetPrefix : '', // affects page bundles and app/commons/vendor scripts
 
   exportPathMap: function () {
     return {
