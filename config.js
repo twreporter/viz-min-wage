@@ -1,5 +1,6 @@
 module.exports = {
   appConfig: {
+    projectName: 'min-wage-draft',
     assetPrefix: '/i/min-wage-draft',
     url: 'http://twreporter.org/i/min-wage-draft',
     domain: 'twreporter.org',

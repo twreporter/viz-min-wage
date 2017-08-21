@@ -72,6 +72,16 @@ class Home extends React.Component {
     window.addEventListener('scroll', this.debouncedOnScroll)
     this.props.detectWindowSize()
     this.setState({ isLoaded: true })
+
+    // send GA Tracking
+    if (ga) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: `${appConfig.projectName}-Viewing`,
+        eventAction: 'Section',
+        eventLabel: 'section-cover',
+      })
+    }
   }
 
   componentWillUnmount() {
