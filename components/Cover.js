@@ -32,21 +32,18 @@ const SvgWrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100% + 40px);
+  height: 100%;
   background: ${colors.white};
-  position: absolute;
-  top: -40px;
-  padding-top: calc(10% + 40px);
-  left: 0;
+  padding-top: 5%;
 `
 
 const GraphicsWrapper = styled.div`
   max-width: 75rem;
   width: 100%;
   position: absolute;
-  top: 30%;
+  top: 27%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -22%);
 `
 
 const HighlightBar = styled.div`
@@ -147,10 +144,15 @@ const FadeAnimationWrapper = styled.div`
 const ButtonWrapper = styled(SvgWrapper)`
   max-width: 100%;
   position: absolute;
-  margin-bottom: 2vh;
-  bottom: 0.5rem;
+  margin-bottom: 0.5vh;
+  bottom: 0.2rem;
   left: 50%;
   transform: translateX(-50%);
+
+  ${screen.largeThanMobile`
+    margin-bottom: 1vh;
+    bottom: 0.6rem;
+  `}
 `
 
 class Cover extends React.Component {
