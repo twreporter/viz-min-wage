@@ -1,4 +1,4 @@
-next-pixi
+# Multimedia Project: Minimum Wage
 
 
 ## Export static files
@@ -16,6 +16,16 @@ All the static assets will be exported to `./out` folder. You can use the follow
 ```
 node staticServer.js
 ```
+
+
+## Export for production
+
+```
+npm run build-prod
+```
+
+All of the links to static assets will be added with prefix: `appConfig/assetPrefix`, which can be configured in `config.js`
+
 
 ## Useful links
 
