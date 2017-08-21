@@ -3,13 +3,13 @@ import ImgAmei from '../static/salary-amei-d.svg'
 import ImgShufun from '../static/salary-shufun-d.svg'
 
 const coverTitle = '到了 2018 年才 22K！'
-const coverSubTitle = '基本工資凍漲十年的真相'
+const coverSubTitle = '曾經凍漲十年的基本工資'
 const publishedDate = '2017.8.21'
 
 const slidesContent = [
   {
     key: 'case-amei',
-    title: '## 阿美／台中／醫院清潔工',
+    title: '## 慧美／台中／醫院清潔工',
     text: '「啊我都吃泡麵啦！很難生活啊！所以之前都有同事月底都一直在跟人家借錢啊！甚至有些人借到後來沒辦法還，就直接落跑了！」',
     sideImg: <ImgAmei />,
   },
@@ -24,7 +24,7 @@ const slidesContent = [
     title: '## 還有162萬勞工面對相似的情況',
     text: '<p>阿美和淑芬領的都是2017年的基本工資21,009，即便沒有家庭要負擔，仍生活得很吃力。</p>' +
     '<p>她們並非個案，根據勞動部說法，共有207萬人薪資受到基本工資影響。</p>' +
-    '<p>儘管甫通過的審議會已將基本工資調到22K，但隨著狂飆的物價，勞工恐怕也得每月為生活煩惱...。</p>',
+    '<p>儘管甫通過的審議會已將基本工資調到22K，但隨著狂飆的物價，勞工恐怕也得每月為生活煩惱⋯⋯。</p>',
     sideImg: null,
   },
   {
@@ -63,8 +63,7 @@ const slidesContent = [
     key: 'intro-3',
     title: '## 再不景氣，也要和你調個工資！',
     text: '<p>若根據「成長果實理論」，只有在經濟有成長時才能調整基本工資。</p>' +
-      '<p>比較台韓的GDP成長率，可以發現幾次金融危機，韓國受到的危害都跟台灣差不多。</p>' +
-      '<p>不過，韓國仍是每年穩定調升基本工資，且其經濟恢復狀況也不輸台灣。</p>' +
+      '<p>比較台韓的GDP成長率，可以發現幾次金融危機，韓國經濟受挫狀況並不輸台灣，但韓國仍是每年穩定調升基本工資。</p>' +
       '<small>資料來源：台韓主計處</small>',
     sideImg: null,
   },
@@ -128,7 +127,7 @@ const slidesContent = [
   {
     key: 'problem-index',
     title: '## 指標僅供參考',
-    text: '<p>審議辦法沒有明確參考項目，每年都是審議會前勞動部透露可能參照哪個公式，<u>常被勞團質疑是「先畫靶再射箭」</u>。</p>' +
+    text: '<p>審議辦法沒有明確參考項目，每年都是審議會前勞動部透露可能參照哪個公式，<u>常被勞團質疑是「先射箭再畫靶」</u>。</p>' +
       '<p>事實上，<u>許多國家會透過「最低工資法」明訂「生活成本」等作為調整最低工資的指標</u>，' +
       '像法國甚至明定消費者物價指數(CPI)上漲超過2%，最低工資會立即以相同幅度調升。</p>',
     sideImg: null,
@@ -154,12 +153,13 @@ const slidesContent = [
     title: '## 蔡英文2016政見主張將「最低工資」入法',
     text: '<p>其實我國<u>曾簽署「經濟社會文化國際權利」國際公約</u>，裡面明確規定落實最低工資維護勞工生存權。</p>' +
       '<p>蔡英文總統也曾在<a href="https://tsai-tracker.twreporter.org/promise?ID=3" target="_blank">勞工政見提出要訂定〈最低工資法〉</a>，以實現此國際權利公約的規範，' +
-      '但<u>勞動部曾承諾去年年底提出草案，但至今尚未提出草案</u>。</p>',
+      '雖然<u>勞動部曾承諾去年年底提出草案，但至今尚未提出草案</u>。</p>',
     sideImg: null,
   },
 ]
 
-const footerText = '目前，雖有時代力量黨團及部分國民黨立委提出草案版本，但兩版本目前各有爭議，最低工資法的制定，仍須各界的關心' +
+const footerText = '<h2>一起監督最低工資法</h2>' +
+  '目前，雖有時代力量黨團及部分國民黨立委提出草案版本，但兩版本目前各有爭議，最低工資法的制定，仍須各界的關心' +
                       '（<a href="https://tsai-tracker.twreporter.org/promise?ID=3" target="_blank">蔡英文〈最低工資法〉進度追蹤</a>）'
 
 const authorsText = '<p>數據、文字整理 ｜ <span itemprop="author">葉瑜娟</span>、<span itemprop="author">王珣沛</span></p>' +
