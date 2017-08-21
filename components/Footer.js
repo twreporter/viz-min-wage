@@ -220,7 +220,7 @@ class Footer extends React.Component {
               </ArticleContainer>
             </LinkBox>
             <BannerLink href="https://tsai-tracker.twreporter.org/" target="_blank" rel="noreferrer noopener">
-              <img alt="蔡英文勞動政策追蹤平台" src={'../static/tsaitracker-banner-twreporter.jpg'} />
+              <img alt="蔡英文勞動政策追蹤平台" src={`${appConfig.url}/static/tsaitracker-banner-twreporter.jpg`} />
             </BannerLink>
             <AuthorBox>
               <p dangerouslySetInnerHTML={{ __html: authorsText }} />
