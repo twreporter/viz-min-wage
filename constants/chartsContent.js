@@ -176,7 +176,7 @@ export const chartsContent = {
   },
   'intro-6': {
     range: {
-      xRange: [1995, 2018],
+      xRange: [1993, 2018],
       yRange: [10000, 32000],
     },
     axisUnit: {
@@ -212,7 +212,7 @@ export const chartsContent = {
   },
   'intro-7': {
     range: {
-      xRange: [1994, 2022],
+      xRange: [1993, 2022],
       yRange: [13000, 25000],
     },
     axisUnit: {
