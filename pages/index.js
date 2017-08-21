@@ -72,6 +72,16 @@ class Home extends React.Component {
     window.addEventListener('scroll', this.debouncedOnScroll)
     this.props.detectWindowSize()
     this.setState({ isLoaded: true })
+
+    // send GA Tracking
+    if (ga) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: `${appConfig.projectName}-Viewing`,
+        eventAction: 'Section',
+        eventLabel: 'section-cover',
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -163,11 +173,20 @@ class Home extends React.Component {
     const { topY, deltaY, percent, isLoaded } = this.state
     const { isMobile } = this.props
     const LoadingIcon = isLoaded ? null : <Loading />
+    const ogImgUrl = `${appConfig.url}/static/home_og_img.jpg`
 
     return (
       <Page title="Home Page" linkTo="/other">
         <Head>
           <title>{appConfig.title}</title>
+          <meta name="description" content={appConfig.description} />
+          <meta property="og:title" content={appConfig.title} />
+          <meta property="og:description" content={appConfig.description} />
+          <meta property="og:url" content={appConfig.url} />
+          <meta property="og:image" content={ogImgUrl} />
+          <meta name="twitter:image" content={ogImgUrl} />
+          <meta name="twitter:title" content={appConfig.title} />
+          <meta name="twitter:description" content={appConfig.description} />
         </Head>
         <OuterCropper>
           { LoadingIcon }
