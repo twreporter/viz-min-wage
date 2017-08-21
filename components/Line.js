@@ -80,7 +80,7 @@ class Line extends Component {
                .transition()
                .duration(animateTime)
                .delay(delayTime)
-               .ease(d3.easeQuadIn)
+               .ease(d3.easeQuadOut)
                .attr('stroke-dashoffset', 0)
   }
 
