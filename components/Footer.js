@@ -24,11 +24,11 @@ const Container = styled.div`
   left: 0;
   background: linear-gradient(to bottom, rgba(239,239,239,0) 0%, rgba(239,239,239,1) 10%, rgba(239,239,239,1) 100%);
   ${screen.largeThanMobile`
-    padding-top: 1.5%;
+    padding-top: 1%;
   `}
 `
 
-const EndText = styled.p`
+const EndText = styled.div`
   text-align: left;
   padding: 0.8rem 0;
   a {
@@ -42,7 +42,7 @@ const EndText = styled.p`
 
 const OverlayText = styled.div`
   width: 100%;
-  padding: 3rem 2rem;
+  padding: 1% 2rem;
   font-size: ${fonts.size.medium};
   color: ${colors.textMidGrey};
   text-align: center;
@@ -59,10 +59,20 @@ const OverlayText = styled.div`
   p {
     margin: 0.2rem;
   }
+
+  h2 {
+    font-size: ${fonts.size.h2Large};
+    margin-top: 0;
+
+    ${screen.mobile`
+      font-size: ${fonts.size.h2};
+      margin-bottom: 0.35rem;
+    `}
+  }
 `
 
 const AuthorBox = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 2.5vh;
 `
 
 const LinkBox = styled.a`
@@ -78,8 +88,8 @@ const LinkBox = styled.a`
 `
 
 const LogoLink = styled(LinkBox)`
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5vh;
+  margin-bottom: 1vh;
   display: inline-block;
   padding: 0.8rem;
 `
