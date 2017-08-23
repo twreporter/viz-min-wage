@@ -10,8 +10,8 @@ export const detectWindowSize = () => (dispatch) => {
   const documentElement = d.documentElement
   const body = d.getElementsByTagName('body')[0]
 
-  const width = w.innerWidth || documentElement.clientWidth || body.clientWidth
-  const height = w.innerHeight || documentElement.clientHeight || body.clientHeight
+  const width = body.clientWidth || documentElement.clientWidth || w.innerWidth
+  const height = body.clientHeight || documentElement.clientHeight || w.innerHeight
   const mobileWidth = breakpoints.small.min * 16
 
   if (width < mobileWidth) {
