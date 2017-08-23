@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { fonts, colors } from '../styles/common-variables'
+import { fonts, colors, breakpoints} from '../styles/common-variables'
 import { screen } from '../styles/utils'
 
 const OverlayText = styled.div`
@@ -18,6 +18,11 @@ const OverlayText = styled.div`
     line-height: 1.6;
     font-size: ${fonts.size.medium};
     letter-spacing: 0.25px;
+  `}
+
+  ${screen.iphone5`
+    font-size: ${fonts.size.base};
+    line-height: 1.45;
   `}
 
   h2 {

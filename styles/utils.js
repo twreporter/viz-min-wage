@@ -27,6 +27,10 @@ export const mq = (mqSettingsObj) => {
 }
 
 export const screen = {
+  iphone5: (...cssCode) => mq({
+    mediaType: 'only screen',
+    'max-width': bps.iphone5.max,
+  })(...cssCode),
   mobile: (...cssCode) => mq({
     mediaType: 'only screen',
     'max-width': bps.xsmall.max,
