@@ -10,11 +10,13 @@ export const detectWindowSize = () => (dispatch) => {
   const documentElement = d.documentElement
   const body = d.getElementsByTagName('body')[0]
 
-  const width = body.clientWidth || documentElement.clientWidth || w.innerWidth
-  const height = body.clientHeight || documentElement.clientHeight || w.innerHeight
+  const width = w.innerWidth || documentElement.clientWidth || body.clientWidth
+  let height = w.innerHeight || documentElement.clientHeight || body.clientHeight
   const mobileWidth = breakpoints.small.min * 16
 
   if (width < mobileWidth) {
+    // on mobile => set height according to the size of body
+    height = body.clientHeight || documentElement.clientHeight || w.innerHeight
     return dispatch({ type: actionTypes.SET_MOBILE, width, height })
   }
 
