@@ -56,6 +56,11 @@ const OverlayText = styled.div`
     font-size: ${fonts.size.base};
   `}
 
+  ${screen.iphone5`
+    padding: 0.6% 2rem;
+    line-height: 1.45;
+  `}
+
   p {
     margin: 0.2rem;
   }

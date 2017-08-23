@@ -48,6 +48,9 @@ const colors = {
 
 const breakpoints = {
   // in rem
+  iphone5: {
+    min: 23,
+  },
   small: {
     min: 40,
   },
@@ -62,6 +65,9 @@ const breakpoints = {
 const remDiff = 0.0625
 
 const bps = {
+  iphone5: {
+    max: `${rem(breakpoints.iphone5.min - remDiff)}`,
+  },
   xsmall: {
     max: `${rem(breakpoints.small.min - remDiff)}`,
   },

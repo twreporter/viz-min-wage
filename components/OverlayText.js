@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { fonts, colors } from '../styles/common-variables'
+import { fonts, colors, breakpoints} from '../styles/common-variables'
 import { screen } from '../styles/utils'
 
 const OverlayText = styled.div`
@@ -20,6 +20,11 @@ const OverlayText = styled.div`
     letter-spacing: 0.25px;
   `}
 
+  ${screen.iphone5`
+    font-size: ${fonts.size.base};
+    line-height: 1.45;
+  `}
+
   h2 {
     font-size: ${fonts.size.h2Large};
     margin: 0.5rem 0 0 0;
@@ -35,6 +40,11 @@ const OverlayText = styled.div`
 
     ${screen.mobile`
       margin-top: 0.28rem;
+    `}
+
+    ${screen.iphone5`
+      font-size: ${fonts.size.base};
+      line-height: 0.2rem;
     `}
   }
 
