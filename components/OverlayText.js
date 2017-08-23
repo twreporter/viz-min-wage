@@ -41,6 +41,11 @@ const OverlayText = styled.div`
     ${screen.mobile`
       margin-top: 0.28rem;
     `}
+
+    ${screen.iphone5`
+      font-size: ${fonts.size.base};
+      line-height: 0.2rem;
+    `}
   }
 
   h4 {

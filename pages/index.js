@@ -71,6 +71,7 @@ class Home extends React.Component {
     window.addEventListener('resize', this.debouncedBrowserResize)
     window.addEventListener('scroll', this.debouncedOnScroll)
     this.props.detectWindowSize()
+    setTimeout(this.props.detectWindowSize, 800)
     this.setState({ isLoaded: true })
 
     // send GA Tracking
@@ -111,6 +112,7 @@ class Home extends React.Component {
     e.preventDefault()       // disable Chrome's pull to refresh feature
     if (!this.state.isMoving) {
       if (Math.abs(deltaY) > this._getSwipeThreshold()) {
+        this.props.detectWindowSize()    // re-detect the window size for ios
         this._onSwipeNext()
       } else {
         // bounce back to the previous position

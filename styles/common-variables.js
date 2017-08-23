@@ -49,7 +49,7 @@ const colors = {
 const breakpoints = {
   // in rem
   iphone5: {
-    min: 35.5,
+    min: 23,
   },
   small: {
     min: 40,
