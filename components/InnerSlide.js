@@ -37,7 +37,7 @@ const Grid = styled.div`
 
   svg {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 98.5%;
     padding: 1rem;
 
     ${screen.mobile`
