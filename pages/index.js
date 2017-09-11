@@ -171,6 +171,7 @@ class Home extends React.Component {
       <Page title="Home Page" linkTo="/other">
         <Head>
           <title>{appConfig.title}</title>
+          <link rel="canonical" href={appConfig.url} />
           <meta name="description" content={appConfig.description} />
           <meta property="og:title" content={appConfig.title} />
           <meta property="og:description" content={appConfig.description} />

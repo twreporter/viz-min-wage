@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "build-prod": "cross-env NODE_ENV=production && npm run build",
     "start": "next start"
   },
   "dependencies": {

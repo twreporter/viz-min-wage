@@ -21,7 +21,7 @@ node staticServer.js
 ## Export for production
 
 ```
-npm run build-prod
+npm run build
 ```
 
 All of the links to static assets will be added with prefix: `appConfig/assetPrefix`, which can be configured in `config.js`
