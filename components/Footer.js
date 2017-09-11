@@ -233,9 +233,6 @@ class Footer extends React.Component {
             <LogoLink href="https://twreporter.org/" target="_blank" rel="noreferrer noopener">
               <Logo />
             </LogoLink>
-            <div dangerouslySetInnerHTML={{ __html:
-              `<iframe src="https://www.facebook.com/plugins/like.php?href=${encodeURI(appConfig.url)}&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=299222990098378" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>` }}
-            />
           </OverlayText>
         </Row>
       </Container>)

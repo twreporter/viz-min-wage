@@ -2,7 +2,8 @@ module.exports = {
   appConfig: {
     projectName: 'min-wage-draft',
     assetPrefix: '/i/min-wage-draft',
-    url: 'http://twreporter.org/i/min-wage-draft',
+    url: 'https://twreporter.org/i/min-wage-draft',
+    httpUrl: 'http://twreporter.org/i/min-wage-draft',
     domain: 'twreporter.org',
     expirationDays: 7,
     title: '到了 2018 年才 22K！曾經凍漲十年的基本工資 - 報導者 The Reporter',
